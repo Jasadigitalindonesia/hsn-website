@@ -1,0 +1,107 @@
+{
+  "navigation": {
+    "home": "Home",
+    "profile": "About Us",
+    "category": "Categories",
+    "product": "Products",
+    "ekatalog": "Catalog",
+    "news": "Articles",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Trusted Solutions for Premium Medical & Aesthetic Equipment in Indonesia",
+    "subtitle": "PT. Harvest Selaras Nusantara",
+    "desc1": "In the ever-evolving world of healthcare and aesthetics, the demand for reliable technology becomes increasingly vital. PT. Harvest Selaras Nusantara stands as a trusted distributor providing a comprehensive range of premium medical and aesthetic equipment for hospitals, clinics, laboratories, healthcare facilities, and beauty clinics across Indonesia.",
+    "desc2": "We believe every healthcare professional requires devices capable of supporting optimal service delivery. Therefore, we present exclusively curated products from globally trusted brands with quality standards that strictly comply with all applicable regulations.",
+    "desc3": "Beyond supplying products, we forge long-term relationships with every client through professional consultation, technical support, installation, operational training, and exceptional after-sales service. With this steadfast commitment, we are ready to be your ultimate partner in supporting modern, safe, and high-quality healthcare services.",
+    "cta_product": "View Products",
+    "cta_contact": "Contact Us"
+  },
+  "about": {
+    "title": "About Us",
+    "heading": "Your Professional Partner in Medical & Aesthetic Equipment Procurement",
+    "p1": "PT. Harvest Selaras Nusantara is a premier enterprise engaged in the distribution of medical and aesthetic equipment, deeply committed to delivering the finest solutions for Indonesia's healthcare sector.",
+    "p2": "Since our establishment, we have consistently grown by prioritizing product quality, operational integrity, and absolute customer satisfaction. We recognize that every hospital, clinic, and healthcare facility has unique requirements, enabling us to consistently provide highly tailored solutions for each client.",
+    "p3": "Supported by seasoned professionals, we ensure that every phase—from initial consultation, procurement, and delivery, to installation and after-sales service—operates at the highest echelon of service standards.",
+    "p4": "For us, client trust is earned not merely through superior products, but through rapid, responsive, and solution-oriented service.",
+    "why_us": "Why Choose PT. Harvest Selaras Nusantara?",
+    "why_us_sub": "We Deliver More Than Just Products",
+    "why_us_desc": "We understand that investing in medical and aesthetic equipment is a paramount decision. Hence, we offer services that transcend mere transactions, delivering immense added value through continuous guidance and unwavering support.",
+    "reasons": [
+      { "title": "Premium Quality Products", "desc": "All products we distribute originate from highly reputable global manufacturers, boasting quality that strictly adheres to international healthcare industry standards." },
+      { "title": "Professional Services", "desc": "Our expert team is readily available for consultations, assisting clients in selecting products that perfectly align with their specific operational needs." },
+      { "title": "Comprehensive Technical Support", "desc": "We provide seamless installation services, comprehensive device operational training, routine maintenance, and immediate technical support whenever required." },
+      { "title": "On-Time Delivery", "desc": "Backed by an extensive and robust distribution network, we are capable of servicing deliveries to various regions across Indonesia with maximum efficiency." },
+      { "title": "Exceptional After-Sales Service", "desc": "Our commitment does not end upon product receipt. We continuously stand by our clients through highly professional and responsive after-sales service." },
+      { "title": "Customer Satisfaction Oriented", "desc": "We firmly believe that long-term relationships are forged through mutual trust, transparent communication, and consistently outstanding service delivery." }
+    ]
+  },
+  "products": {
+    "title": "Featured Products",
+    "heading": "Comprehensive Solutions for Diverse Medical and Aesthetic Needs",
+    "desc1": "We provide an extensive selection of products meticulously designed to support healthcare services that are more effective, efficient, and technologically advanced.",
+    "desc2": "Our available product categories include:",
+    "categories": [
+      "Medical Equipment",
+      "Aesthetic Equipment",
+      "Diagnostic Devices",
+      "Laboratory Equipment",
+      "Hospital Equipment",
+      "Medical Furniture",
+      "Medical Consumables",
+      "Accessories & Spare Parts"
+    ],
+    "desc3": "Every product undergoes a rigorous selection process to ensure it delivers peak performance in supporting both medical and aesthetic treatments."
+  },
+  "ekatalog": {
+    "title": "e-Katalog LKPP",
+    "heading": "Facilitating Seamless Government Procurement Processes",
+    "p1": "As an enterprise actively supporting the digitalization of national procurement, PT. Harvest Selaras Nusantara offers a diverse range of products readily available on the e-Katalog LKPP.",
+    "p2": "Through this system, the procurement process becomes significantly faster, highly transparent, efficient, and fully compliant with applicable government regulations. We are prepared to assist government agencies and healthcare facilities in acquiring necessary products through a simplified and highly trusted process."
+  },
+  "cdakb": {
+    "title": "CDAKB Certification",
+    "heading": "Our Unwavering Commitment to Medical Device Distribution Standards",
+    "p1": "As a leading medical device distributor, we are deeply committed to executing our entire distribution process in strict accordance with the principles of Good Medical Device Distribution Practice (CDAKB - Cara Distribusi Alat Kesehatan yang Baik).",
+    "p2": "This standard serves as our foundational pillar in preserving product quality throughout the reception, storage, handling, and delivery processes to our clients.",
+    "p3": "Through the stringent implementation of CDAKB, we guarantee that every product received by our clients remains in optimal condition, is exceptionally safe to use, and unequivocally meets all established quality benchmarks."
+  },
+  "news": {
+    "title": "NEWS",
+    "heading": "Latest Updates from the Medical & Aesthetics World",
+    "p1": "Stay informed with the latest updates regarding healthcare technology advancements, medical equipment innovations, aesthetic industry trends, new product launches, corporate activities, seminars, training sessions, and educational articles that serve as premier references for healthcare professionals and industry practitioners.",
+    "p2": "We believe that accurate and timely information dramatically enhances service quality and provides invaluable new insights for all our esteemed partners."
+  },
+  "promo": {
+    "title": "PROMOTIONS",
+    "heading": "Exclusive Offers to Optimize Your Investments",
+    "p1": "We periodically launch various highly attractive promotional programs for our premium selected products.",
+    "p2": "Ranging from special pricing, strategic bundling packages, and exclusive offers, to specialized programs designed specifically for hospitals, clinics, laboratories, and beauty clinics.",
+    "p3": "Through these diverse available promotions, we aspire for every client to obtain the absolute best solutions alongside maximized investment value."
+  },
+  "profile": {
+    "title": "CORPORATE PROFILE",
+    "heading": "About PT. Harvest Selaras Nusantara",
+    "p1": "PT. Harvest Selaras Nusantara is a distinguished enterprise operating as a premier distributor of medical and aesthetic equipment, comprehensively serving the diverse needs of hospitals, clinics, laboratories, healthcare institutions, and beauty clinics across Indonesia.",
+    "p2": "We exist with a profound passion to support the continuous elevation of healthcare service quality by supplying world-class products synergized with professional, customer-centric services.",
+    "p3": "Beyond offering a wide array of premium products, we provide holistic solutions through in-depth consultation, precise installation, operational training, reliable technical support, and exceptional after-sales service.",
+    "p4": "Championing integrity, sheer professionalism, and continuous innovation, we relentlessly strive to be your most trusted partner, capable of making tangible contributions to the advancement of Indonesia's healthcare and aesthetic sectors."
+  },
+  "contact": {
+    "title": "CONTACT US",
+    "heading": "Let's Manifest Better Healthcare Services Together",
+    "p1": "Should you require detailed information regarding our products, medical equipment procurement consultations, collaborative partnership offers, or after-sales service inquiries, the PT. Harvest Selaras Nusantara team is fully prepared to assist you.",
+    "p2": "We firmly believe that every unique need possesses an exact solution. Empowered by our vast experience, premium quality products, and highly professional service, we are ready to be your most trusted partner in fulfilling all your medical and aesthetic equipment requirements.",
+    "p3": "Please reach out to us via telephone, email, or by visiting our corporate office. Our dedicated team will be absolutely delighted to provide the best information and strategic recommendations tailored exactly to your needs."
+  },
+  "footer": {
+    "about_desc": "PT Harvest Selaras Nusantara is a trusted medical equipment distributor in Indonesia, offering quality medical equipment at highly competitive prices.",
+    "links_title": "Quick Links",
+    "contact_title": "Contact Us",
+    "newsletter_title": "Newsletter",
+    "newsletter_desc": "Sign up to receive our latest updates and exclusive promotional offers.",
+    "newsletter_placeholder": "Your Email Address",
+    "newsletter_button": "Subscribe",
+    "rights": "All Rights Reserved."
+  }
+}

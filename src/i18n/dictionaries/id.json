@@ -1,0 +1,107 @@
+{
+  "navigation": {
+    "home": "Home",
+    "profile": "Tentang Kami",
+    "category": "Kategori",
+    "product": "Produk",
+    "ekatalog": "Katalog",
+    "news": "Artikel",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "title": "Solusi Terpercaya untuk Peralatan Medis & Estetika Berkualitas di Indonesia",
+    "subtitle": "PT. Harvest Selaras Nusantara",
+    "desc1": "Dalam dunia kesehatan dan estetika yang terus berkembang, kebutuhan akan teknologi yang andal menjadi semakin penting. PT. Harvest Selaras Nusantara hadir sebagai distributor terpercaya yang menyediakan berbagai peralatan medis dan estetika berkualitas tinggi untuk rumah sakit, klinik, laboratorium, fasilitas kesehatan, hingga klinik kecantikan di seluruh Indonesia.",
+    "desc2": "Kami percaya bahwa setiap tenaga kesehatan membutuhkan perangkat yang mampu mendukung pelayanan secara optimal. Oleh karena itu, kami menghadirkan produk-produk pilihan dari merek terpercaya dengan standar mutu yang telah memenuhi regulasi yang berlaku.",
+    "desc3": "Tidak hanya menyediakan produk, kami juga membangun hubungan jangka panjang dengan setiap pelanggan melalui layanan konsultasi, dukungan teknis, instalasi, pelatihan penggunaan alat, serta layanan purna jual yang profesional. Dengan komitmen tersebut, kami siap menjadi mitra terbaik dalam mendukung pelayanan kesehatan yang lebih modern, aman, dan berkualitas.",
+    "cta_product": "Lihat Produk",
+    "cta_contact": "Hubungi Kami"
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "heading": "Mitra Profesional dalam Penyediaan Peralatan Medis & Estetika",
+    "p1": "PT. Harvest Selaras Nusantara merupakan perusahaan yang bergerak di bidang distribusi alat kesehatan dan peralatan estetika dengan komitmen menghadirkan solusi terbaik bagi dunia kesehatan Indonesia.",
+    "p2": "Sejak berdiri, kami terus berkembang dengan mengedepankan kualitas produk, integritas dalam pelayanan, serta kepuasan pelanggan sebagai prioritas utama. Kami memahami bahwa setiap rumah sakit, klinik, maupun fasilitas kesehatan memiliki kebutuhan yang berbeda, sehingga kami selalu memberikan solusi yang disesuaikan dengan kebutuhan masing-masing pelanggan.",
+    "p3": "Didukung oleh tenaga profesional yang berpengalaman, kami memastikan setiap proses mulai dari konsultasi, pengadaan, pengiriman, instalasi hingga layanan purna jual berjalan dengan standar pelayanan terbaik.",
+    "p4": "Bagi kami, kepercayaan pelanggan bukan hanya diperoleh melalui produk berkualitas, tetapi juga melalui pelayanan yang cepat, responsif, dan berorientasi pada solusi.",
+    "why_us": "Mengapa Memilih PT. Harvest Selaras Nusantara?",
+    "why_us_sub": "Kami Memberikan Lebih dari Sekadar Produk",
+    "why_us_desc": "Kami memahami bahwa investasi dalam peralatan medis dan estetika merupakan keputusan penting. Oleh karena itu, kami menghadirkan layanan yang tidak hanya berfokus pada penjualan, tetapi juga memberikan nilai tambah melalui pendampingan dan dukungan yang berkelanjutan.",
+    "reasons": [
+      { "title": "Produk Berkualitas", "desc": "Seluruh produk yang kami distribusikan berasal dari produsen terpercaya dengan kualitas yang telah memenuhi standar industri kesehatan." },
+      { "title": "Layanan Profesional", "desc": "Tim kami siap memberikan konsultasi untuk membantu pelanggan memilih produk yang paling sesuai dengan kebutuhan operasional." },
+      { "title": "Dukungan Teknis", "desc": "Kami menyediakan layanan instalasi, pelatihan penggunaan alat, maintenance, hingga dukungan teknis apabila diperlukan." },
+      { "title": "Pengiriman Tepat Waktu", "desc": "Didukung jaringan distribusi yang luas, kami mampu melayani pengiriman ke berbagai wilayah di Indonesia dengan proses yang efisien." },
+      { "title": "Layanan Purna Jual", "desc": "Komitmen kami tidak berhenti setelah produk diterima. Kami terus mendampingi pelanggan melalui layanan purna jual yang profesional." },
+      { "title": "Berorientasi pada Kepuasan Pelanggan", "desc": "Kami percaya bahwa hubungan jangka panjang dibangun melalui kepercayaan, komunikasi yang baik, serta pelayanan yang konsisten." }
+    ]
+  },
+  "products": {
+    "title": "Produk Unggulan",
+    "heading": "Solusi Lengkap untuk Berbagai Kebutuhan Medis dan Estetika",
+    "desc1": "Kami menyediakan berbagai pilihan produk yang dirancang untuk mendukung pelayanan kesehatan yang lebih efektif, efisien, dan modern.",
+    "desc2": "Kategori produk yang tersedia meliputi:",
+    "categories": [
+      "Medical Equipment",
+      "Aesthetic Equipment",
+      "Diagnostic Devices",
+      "Laboratory Equipment",
+      "Hospital Equipment",
+      "Medical Furniture",
+      "Medical Consumables",
+      "Accessories & Spare Parts"
+    ],
+    "desc3": "Setiap produk dipilih melalui proses seleksi yang ketat agar mampu memberikan performa terbaik dalam mendukung pelayanan medis maupun estetika."
+  },
+  "ekatalog": {
+    "title": "e-Katalog LKPP",
+    "heading": "Mendukung Proses Pengadaan Pemerintah yang Lebih Mudah",
+    "p1": "Sebagai perusahaan yang mendukung digitalisasi pengadaan nasional, PT. Harvest Selaras Nusantara menyediakan berbagai produk yang telah tersedia di e-Katalog LKPP.",
+    "p2": "Melalui sistem ini, proses pengadaan menjadi lebih cepat, transparan, efisien, dan sesuai dengan regulasi pemerintah yang berlaku. Kami siap membantu instansi pemerintah maupun fasilitas kesehatan dalam memperoleh produk yang dibutuhkan dengan proses yang lebih sederhana dan terpercaya."
+  },
+  "cdakb": {
+    "title": "CDAKB",
+    "heading": "Komitmen Kami terhadap Standar Distribusi Alat Kesehatan",
+    "p1": "Sebagai distributor alat kesehatan, kami berkomitmen menjalankan seluruh proses distribusi sesuai prinsip Cara Distribusi Alat Kesehatan yang Baik (CDAKB).",
+    "p2": "Standar ini menjadi landasan kami dalam menjaga mutu produk sejak proses penerimaan, penyimpanan, penanganan, hingga pengiriman kepada pelanggan.",
+    "p3": "Melalui penerapan CDAKB, kami memastikan bahwa setiap produk yang diterima pelanggan tetap berada dalam kondisi terbaik, aman digunakan, serta memenuhi standar kualitas yang telah ditetapkan."
+  },
+  "news": {
+    "title": "BERITA",
+    "heading": "Informasi Terbaru Seputar Dunia Medis & Estetika",
+    "p1": "Ikuti berbagai informasi terbaru mengenai perkembangan teknologi kesehatan, inovasi peralatan medis, tren industri estetika, peluncuran produk terbaru, kegiatan perusahaan, seminar, pelatihan, hingga artikel edukatif yang dapat menjadi referensi bagi para tenaga kesehatan maupun pelaku industri.",
+    "p2": "Kami percaya bahwa informasi yang tepat dapat membantu meningkatkan kualitas pelayanan serta memberikan wawasan baru bagi seluruh mitra kami."
+  },
+  "promo": {
+    "title": "PROMO",
+    "heading": "Penawaran Menarik untuk Mendukung Investasi Anda",
+    "p1": "Kami secara berkala menghadirkan berbagai program promo untuk produk-produk pilihan.",
+    "p2": "Mulai dari harga spesial, paket bundling, penawaran eksklusif, hingga program khusus bagi rumah sakit, klinik, laboratorium, dan klinik kecantikan.",
+    "p3": "Dengan berbagai promo yang tersedia, kami berharap setiap pelanggan dapat memperoleh solusi terbaik dengan nilai investasi yang lebih optimal."
+  },
+  "profile": {
+    "title": "PROFIL",
+    "heading": "Tentang PT. Harvest Selaras Nusantara",
+    "p1": "PT. Harvest Selaras Nusantara adalah perusahaan yang bergerak sebagai distributor alat kesehatan dan peralatan estetika yang melayani berbagai kebutuhan rumah sakit, klinik, laboratorium, institusi kesehatan, serta klinik kecantikan di Indonesia.",
+    "p2": "Kami hadir dengan semangat untuk mendukung peningkatan kualitas pelayanan kesehatan melalui penyediaan produk-produk berkualitas tinggi yang dipadukan dengan pelayanan profesional dan berorientasi pada kepuasan pelanggan.",
+    "p3": "Selain menyediakan berbagai produk unggulan, kami juga memberikan layanan konsultasi, instalasi, pelatihan penggunaan alat, dukungan teknis, serta layanan purna jual sehingga pelanggan memperoleh solusi yang menyeluruh.",
+    "p4": "Dengan mengedepankan integritas, profesionalisme, dan inovasi, kami terus berupaya menjadi mitra terpercaya yang mampu memberikan kontribusi nyata bagi kemajuan sektor kesehatan dan estetika di Indonesia."
+  },
+  "contact": {
+    "title": "KONTAK",
+    "heading": "Mari Wujudkan Pelayanan Kesehatan yang Lebih Baik Bersama Kami",
+    "p1": "Apabila Anda membutuhkan informasi mengenai produk, konsultasi pengadaan alat kesehatan, penawaran kerja sama, maupun layanan purna jual, tim PT. Harvest Selaras Nusantara siap membantu Anda.",
+    "p2": "Kami percaya bahwa setiap kebutuhan memiliki solusi yang tepat. Dengan pengalaman, produk berkualitas, dan pelayanan profesional, kami siap menjadi mitra terpercaya dalam memenuhi kebutuhan peralatan medis dan estetika Anda.",
+    "p3": "Silakan hubungi kami melalui telepon, email, atau kunjungi kantor kami. Tim kami akan dengan senang hati memberikan informasi dan rekomendasi terbaik sesuai kebutuhan Anda."
+  },
+  "footer": {
+    "about_desc": "PT Harvest Selaras Nusantara adalah distributor alat kesehatan terpercaya di indonesia, menawarkan peralatan medis berkualitas dengan harga bersaing.",
+    "links_title": "Tautan",
+    "contact_title": "Hubungi Kami",
+    "newsletter_title": "Newsletter",
+    "newsletter_desc": "Daftar untuk mendapatkan info terbaru dan promo eksklusif kami.",
+    "newsletter_placeholder": "Alamat Email Anda",
+    "newsletter_button": "Langganan",
+    "rights": "All Rights Reserved."
+  }
+}

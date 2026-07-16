@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --background: #F4F7FB; /* Very light icy blue from the palette */
+  --foreground: #343C44; /* Dark charcoal from the palette */
+}
+
+@theme {
+  --color-primary: #6491C0; /* Primary Blue from the palette */
+  --color-primary-hover: #d9b969; /* Gold hover for buttons */
+  --color-secondary: #BDCFDE; /* Light blue/slate from the palette */
+  --color-secondary-hover: #A0B9CD;
+  --color-text-dark: #343C44; /* Dark charcoal */
+  --color-text-light: #9CA4B0; /* Slate grey from the palette */
+  --color-border: #9CA4B0; 
+  
+  --font-sans: var(--font-poppins), sans-serif;
+  --font-body: var(--font-roboto), sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* Gold Gradient Utilities */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #d9b969 0%, #b89849 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #d9b969 0%, #b89849 100%);
+}
+
+/* Custom fade animation */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Shine animation for text */
+@keyframes shine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.animate-shine {
+  background: linear-gradient(
+    to right,
+    #ffffff 20%,
+    #d9b969 40%,
+    #d9b969 60%,
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 6s ease-in-out infinite;
+}
