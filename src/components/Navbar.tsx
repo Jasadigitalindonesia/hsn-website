@@ -20,13 +20,13 @@ export default function Navbar({ lang, dict }: { lang: string, dict: any }) {
   };
 
   const navLinks = [
-    { name: dict.home, href: `/${lang}` },
-    { name: dict.profile, href: `/${lang}/profil` },
-    { name: dict.category, href: `/${lang}/kategori` },
-    { name: dict.product, href: `/${lang}/produk` },
-    { name: dict.ekatalog, href: `/${lang}/katalog` },
-    { name: dict.news, href: `/${lang}/artikel` },
-    { name: dict.contact, href: `/${lang}/kontak` },
+    { name: dict.home, href: `/` },
+    { name: dict.profile, href: `/profil` },
+    { name: dict.category, href: `/kategori` },
+    { name: dict.product, href: `/produk` },
+    { name: dict.ekatalog, href: `/katalog` },
+    { name: dict.news, href: `/artikel` },
+    { name: dict.contact, href: `/kontak` },
   ];
 
   return (

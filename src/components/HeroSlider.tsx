@@ -9,7 +9,7 @@ export default function HeroSlider({ lang, dict }: { lang: string, dict: any }) 
   const slide = {
     image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
     title: "Distributor of Medical & Aesthetic Equipments",
-    link: `/${lang}/produk`
+    link: `/produk`
   };
 
   return (

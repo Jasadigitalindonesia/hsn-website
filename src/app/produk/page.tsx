@@ -44,7 +44,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
             <div>
               <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-2">{productsDict?.title || 'Produk Kami'}</h1>
               <div className="flex items-center space-x-2 text-white/80 text-sm font-medium">
-                <Link href={``} className="hover:text-white transition-colors">Home</Link>
+                <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
                 <span>/</span>
                 <span className="text-white">{productsDict?.title || 'Produk'}</span>
               </div>

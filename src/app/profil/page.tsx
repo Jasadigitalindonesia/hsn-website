@@ -22,7 +22,7 @@ export default async function Page() {
             </h1>
             <div className="w-24 h-1 bg-white/50 mx-auto rounded-full mb-6"></div>
             <div className="flex items-center justify-center space-x-2 text-white/80 text-sm font-medium">
-              <Link href={``} className="hover:text-white transition-colors">Home</Link>
+              <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
               <span className="text-white">{aboutDict?.title || 'Tentang Kami'}</span>
             </div>

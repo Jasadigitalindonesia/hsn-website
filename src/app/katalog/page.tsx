@@ -28,7 +28,7 @@ export default async function Page() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 shadow-sm">Katalog Produk</h1>
           <div className="w-24 h-1 bg-white/50 mx-auto rounded-full mb-6"></div>
           <div className="flex justify-center items-center space-x-2 text-white/80 text-sm font-medium">
-            <Link href={``} className="hover:text-white transition-colors">Home</Link>
+            <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
             <span className="text-white">Katalog</span>
           </div>

@@ -33,12 +33,12 @@ export default function Footer({ dict, lang }: { dict: any, lang: string }) {
           <div>
             <h3 className="text-white font-bold text-lg mb-6 relative pb-3 before:absolute before:bottom-0 before:left-0 before:w-12 before:h-0.5 before:bg-primary">{dict.links_title}</h3>
             <ul className="space-y-3">
-              <li><Link href={`/${lang}/profil`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Tentang Kami</Link></li>
-              <li><Link href={`/${lang}/kategori`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Kategori</Link></li>
-              <li><Link href={`/${lang}/produk`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Produk</Link></li>
-              <li><Link href={`/${lang}/katalog`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Katalog</Link></li>
-              <li><Link href={`/${lang}/artikel`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Artikel</Link></li>
-              <li><Link href={`/${lang}/kontak`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Kontak</Link></li>
+              <li><Link href={`/profil`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Tentang Kami</Link></li>
+              <li><Link href={`/kategori`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Kategori</Link></li>
+              <li><Link href={`/produk`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Produk</Link></li>
+              <li><Link href={`/katalog`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Katalog</Link></li>
+              <li><Link href={`/artikel`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Artikel</Link></li>
+              <li><Link href={`/kontak`} className="hover:text-primary transition-colors flex items-center"><ArrowRight className="w-3 h-3 mr-2" /> Kontak</Link></li>
             </ul>
           </div>
 
@@ -87,8 +87,8 @@ export default function Footer({ dict, lang }: { dict: any, lang: string }) {
         <div className="border-t border-[#222222] pt-8 flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {new Date().getFullYear()} PT Harvest Selaras Nusantara. {dict.rights}</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link href={`/${lang}/privacy-policy`} className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href={`/${lang}/terms`} className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href={`/privacy-policy`} className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href={`/terms`} className="hover:text-primary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
