@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  image     String?
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  brand       String?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  image       String?
+  description String?  @db.Text
+  specs       Json?
+  priceRange  String?
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model NewsArticle {
+  id        String   @id @default(cuid())
+  title     String
+  excerpt   String?  @db.Text
+  content   String   @db.Text
+  image     String?
+  author    String?
+  date      String?
+  readTime  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuotationRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  message   String   @db.Text
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
