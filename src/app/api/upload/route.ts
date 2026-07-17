@@ -1,9 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
+import { checkAuth } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
+  if (!(await checkAuth())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
