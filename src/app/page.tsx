@@ -1,3 +1,4 @@
+import dict from '@/i18n/dictionaries/id.json';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSlider from '@/components/HeroSlider';
@@ -7,8 +8,18 @@ import Image from 'next/image';
 import { ArrowRight, Phone, Mail, Award, HeadphonesIcon, Lightbulb, ThumbsUp } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
 
+export const revalidate = 0; // Force real-time updates
+
 export default async function Home() {
-    const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
+    const lang: string = "";
+
+  // @ts-ignore - Bypass VSCode TS Server cache issue for prisma.siteSetting
+  // Fetch settings from database
+  const dbSettings = await prisma.siteSetting.findMany();
+  const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
+    acc[curr.key] = curr.value;
+    return acc;
+  }, {});
 
   const categories = [
     { title: "Aesthetic Equipment", img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80" },
@@ -21,13 +32,14 @@ export default async function Home() {
   const dbFeaturedProducts = await prisma.product.findMany({
     where: { isFeatured: true },
     orderBy: { createdAt: 'desc' },
-    take: 3
+    take: 3,
+    include: { category: true }
   });
 
-  const featuredProducts = dbFeaturedProducts.map((p: any) => ({
+  const featuredProducts = dbFeaturedProducts.map((p) => ({
     id: p.id,
     name: p.name,
-    category: p.category || p.categoryId || 'Uncategorized',
+    category: p.category?.name || p.categoryId || 'Uncategorized',
     image: p.image || 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80',
   }));
 
@@ -35,12 +47,13 @@ export default async function Home() {
   if (featuredProducts.length === 0) {
     const latestProducts = await prisma.product.findMany({
       orderBy: { createdAt: 'desc' },
-      take: 3
+      take: 3,
+      include: { category: true }
     });
-    featuredProducts.push(...latestProducts.map((p: any) => ({
+    featuredProducts.push(...latestProducts.map((p) => ({
       id: p.id,
       name: p.name,
-      category: p.category || 'Uncategorized',
+      category: p.category?.name || p.categoryId || 'Uncategorized',
       image: p.image || 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80',
     })));
   }
@@ -56,7 +69,7 @@ export default async function Home() {
       <Navbar lang={lang} dict={dict.navigation} />
       
       {/* 1. HERO SLIDER */}
-      <HeroSlider dict={dict.hero} lang={lang} />
+      <HeroSlider settings={settings} />
 
       {/* 2. ABOUT US (Welcome Section) */}
       <section className="py-20 bg-white">
@@ -126,7 +139,7 @@ export default async function Home() {
           </AnimatedSection>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredProducts.map((product: any, i: number) => (
+            {featuredProducts.map((product, i: number) => (
               <AnimatedSection key={product.id || i} delay={0.2 + (i * 0.1)}>
                 <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 group">
                   <div className="relative h-64 overflow-hidden bg-gray-100">
