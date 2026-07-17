@@ -3,10 +3,21 @@ import Footer from '@/components/Footer';
 import { Target, Eye, ShieldCheck, Award, HeartHandshake, Zap, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedSection from '@/components/AnimatedSection';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export const revalidate = 0; // Force real-time updates
 
 export default async function Page() {
-    const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
-  const aboutDict = (dict as any)['about'];
+  const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
+  
+  // @ts-ignore - Bypass VSCode TS Server cache issue
+  const dbSettings = await prisma.siteSetting.findMany({ where: { category: 'profil' } });
+  const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
+    acc[curr.key] = curr.value;
+    return acc;
+  }, {});
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
@@ -14,11 +25,11 @@ export default async function Page() {
       
       {/* 1. Page Header (Hero) */}
       <div className="relative pt-32 pb-24 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+        <div className={`absolute inset-0 opacity-10 bg-cover bg-center`} style={{ backgroundImage: `url('${settings.profil_hero_bg || 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'}')` }}></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight shadow-sm">
-              Tentang PT Harvest Selaras Nusantara
+              {settings.profil_hero_title || 'Tentang PT Harvest Selaras Nusantara'}
             </h1>
             <div className="w-24 h-1 bg-white/50 mx-auto rounded-full mb-6"></div>
             <div className="flex items-center justify-center space-x-2 text-white/80 text-sm font-medium">
@@ -30,119 +41,102 @@ export default async function Page() {
         </div>
       </div>
 
-      {/* 2. Main About Section (Kenali Lebih Dekat) */}
+      {/* 2. Main About Section */}
       <section className="py-20 lg:py-28 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <AnimatedSection className="w-full lg:w-1/2">
               <div className="relative">
                 <div className="absolute -left-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
-                <h4 className="text-primary font-bold uppercase tracking-widest mb-3 text-sm relative z-10">Tentang Kami</h4>
+                <h4 className="text-primary font-bold uppercase tracking-widest mb-3 text-sm relative z-10">
+                  {settings.profil_about_subtitle || 'Tentang Kami'}
+                </h4>
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-8 leading-tight relative z-10">
-                  Tentang PT Harvest Selaras Nusantara
+                  {settings.profil_about_title || 'Tentang PT Harvest Selaras Nusantara'}
                 </h2>
                 
                 <div className="prose prose-lg text-gray-600 max-w-none relative z-10">
                   <p className="font-medium text-gray-800 text-xl leading-relaxed mb-6">
-                    PT Harvest Selaras Nusantara merupakan distributor B2B alat medis dan estetika yang berkomitmen menghadirkan produk berkualitas internasional untuk mendukung perkembangan industri kesehatan dan estetika di Indonesia.
+                    {settings.profil_about_desc1 || 'PT Harvest Selaras Nusantara merupakan distributor B2B alat medis dan estetika yang berkomitmen menghadirkan produk berkualitas internasional untuk mendukung perkembangan industri kesehatan dan estetika di Indonesia.'}
                   </p>
                   <p className="mb-6 leading-relaxed">
-                    Kami percaya bahwa teknologi yang tepat mampu meningkatkan kualitas pelayanan, memperkuat kepercayaan pasien, dan mendukung pertumbuhan bisnis setiap mitra kami. Oleh karena itu, kami tidak hanya menyediakan produk, tetapi juga menghadirkan layanan konsultasi, instalasi, pelatihan, serta dukungan purna jual yang profesional.
+                    {settings.profil_about_desc2 || 'Kami percaya bahwa teknologi yang tepat mampu meningkatkan kualitas pelayanan, memperkuat kepercayaan pasien, dan mendukung pertumbuhan bisnis setiap mitra kami. Oleh karena itu, kami tidak hanya menyediakan produk, tetapi juga menghadirkan layanan konsultasi, instalasi, pelatihan, serta dukungan purna jual yang profesional.'}
+                  </p>
+                  <p className="leading-relaxed">
+                    {settings.profil_about_desc3 || 'Dengan dukungan tim teknisi yang andal dan jaringan distribusi yang luas di berbagai wilayah, HSN siap menjadi partner strategis yang dapat diandalkan oleh rumah sakit, klinik, maupun dokter spesialis dalam memberikan layanan medis yang unggul.'}
                   </p>
                 </div>
               </div>
             </AnimatedSection>
             
-            <div className="w-full lg:w-1/2">
-              <div className="relative grid grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=600&q=80" alt="Hospital" className="rounded-2xl w-full h-[300px] object-cover shadow-lg transform translate-y-8" />
-                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="Doctor" className="rounded-2xl w-full h-[300px] object-cover shadow-lg" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-2xl z-20 text-center w-48">
-                  <div className="text-4xl font-black text-primary mb-1">10+</div>
-                  <div className="text-sm font-bold text-gray-800 uppercase tracking-wider">Tahun Pengalaman</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Vision & Mission */}
-      <section className="py-20 bg-[#f8f9fa] border-y border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Visi & Misi Perusahaan</h2>
-            <div className="w-24 h-1 bg-gold-gradient mx-auto"></div>
-          </div>
-          
-          <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
-            <div className="flex-1 bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-                <Eye className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
-              </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4">Visi Kami</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Menjadi distributor Medical & Aesthetic Equipment terpercaya di Indonesia yang menghadirkan solusi inovatif, berkualitas, dan bernilai bagi dunia kesehatan dan estetika.
-              </p>
-            </div>
-            
-            <div className="flex-1 bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-                <Target className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
-              </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4">Misi Kami</h3>
-              <ul className="space-y-4 text-gray-600 text-lg">
-                <li className="flex items-start">
-                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>Menyediakan produk berkualitas internasional.</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>Memberikan pelayanan profesional kepada setiap pelanggan.</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>Menghadirkan solusi teknologi yang inovatif.</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>Menjalin kemitraan jangka panjang.</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>Mendukung perkembangan industri kesehatan dan estetika di Indonesia.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Why Choose Us */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h4 className="text-primary font-bold uppercase tracking-widest mb-2 text-sm">{aboutDict?.why_us_sub}</h4>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">{aboutDict?.why_us}</h2>
-          <div className="w-24 h-1 bg-gold-gradient mx-auto mb-8"></div>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg mb-16 leading-relaxed">
-            {aboutDict?.why_us_desc}
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            {aboutDict?.reasons?.map((reason: any, index: number) => {
-              const icons = [<ShieldCheck />, <HeartHandshake />, <Zap />, <Target />, <Award />, <Eye />];
-              const Icon = icons[index % icons.length];
-              
-              return (
-                <div key={index} className="text-left bg-[#f8f9fa] p-8 rounded-2xl hover:bg-white hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-gray-100 group">
-                  <div className="w-14 h-14 bg-primary text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
-                    {Icon}
+            <AnimatedSection className="w-full lg:w-1/2 flex justify-center lg:justify-end" delay={0.2}>
+              <div className="relative w-full max-w-lg">
+                <div className="absolute top-0 -left-4 w-full h-full border-2 border-accent rounded-3xl transform translate-x-4 translate-y-4"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Doctor with patient" 
+                  className="rounded-3xl shadow-2xl relative z-10 object-cover h-[500px] w-full"
+                />
+                <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl z-20 hidden md:block border border-gray-100">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-primary/10 p-4 rounded-full text-primary">
+                      <ShieldCheck size={32} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-lg">Terpercaya</h4>
+                      <p className="text-gray-500 text-sm font-medium">Distributor Resmi</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{reason.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{reason.desc}</p>
                 </div>
-              );
-            })}
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Vision & Mission Section */}
+      <section className="py-20 lg:py-28 bg-[#f8f9fa] border-t border-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Vision */}
+            <AnimatedSection className="bg-white p-10 lg:p-12 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition-shadow">
+              <div className="absolute -right-10 -top-10 text-primary/5 transform rotate-12 group-hover:rotate-6 transition-transform duration-500">
+                <Eye size={200} />
+              </div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-primary/30">
+                  <Eye size={32} />
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">{settings.profil_vision_title || 'Visi Kami'}</h3>
+                <p className="text-xl text-gray-600 leading-relaxed font-medium">
+                  {settings.profil_vision_desc || 'Menjadi perusahaan distributor alat medis dan estetika terdepan di Indonesia yang dipercaya karena keunggulan produk, inovasi teknologi, dan layanan purna jual yang andal.'}
+                </p>
+              </div>
+            </AnimatedSection>
+
+            {/* Mission */}
+            <AnimatedSection className="bg-white p-10 lg:p-12 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition-shadow" delay={0.2}>
+              <div className="absolute -right-10 -top-10 text-accent/5 transform -rotate-12 group-hover:-rotate-6 transition-transform duration-500">
+                <Target size={200} />
+              </div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-accent/30">
+                  <Target size={32} />
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">{settings.profil_mission_title || 'Misi Kami'}</h3>
+                <ul className="space-y-5">
+                  {(settings.profil_mission_list || 'Menyediakan produk medis dan estetika berstandar internasional yang aman, efektif, dan inovatif.\nMemberikan pelayanan pelanggan yang prima, termasuk konsultasi teknis, pelatihan penggunaan alat, dan layanan perbaikan yang cepat.\nMembangun kemitraan strategis dengan rumah sakit, klinik kecantikan, dan profesional medis di seluruh Indonesia.\nTerus mengikuti perkembangan teknologi medis terkini untuk memberikan solusi yang relevan dengan kebutuhan pasar.\nMendukung peningkatan standar fasilitas kesehatan di Indonesia melalui ketersediaan perangkat berkualitas tinggi.')
+                    .split('\n').filter(Boolean).map((mission, index) => (
+                    <li key={index} className="flex items-start gap-4">
+                      <div className="mt-1 bg-accent/10 p-1 rounded text-accent shrink-0">
+                        <CheckCircle2 size={18} />
+                      </div>
+                      <span className="text-gray-700 text-lg leading-relaxed">{mission}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -151,4 +145,3 @@ export default async function Page() {
     </main>
   );
 }
-

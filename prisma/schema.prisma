@@ -67,3 +67,10 @@ model SiteSetting {
   category  String   @default("general")
   updatedAt DateTime @updatedAt
 }
+
+model ImageStorage {
+  id        String   @id @default(cuid())
+  data      String   @db.Text
+  mimeType  String   @default("image/jpeg")
+  createdAt DateTime @default(now())
+}

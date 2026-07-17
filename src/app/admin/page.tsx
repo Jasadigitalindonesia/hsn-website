@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { 
   Package, FileText, ShoppingBag, Plus, Trash2, Edit2, 
-  RotateCcw, Check, Clock, Eye, Mail, Phone, Home, MessageSquare, Settings 
+  RotateCcw, Check, Clock, Eye, Mail, Phone, Home, MessageSquare, Settings, Save 
 } from 'lucide-react';
 import { 
   getStoredProducts, saveStoredProducts, 
@@ -108,6 +108,7 @@ export default function AdminPage() {
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   // Tabs
   const [activeTab, setActiveTab] = useState<'products' | 'news' | 'quotes' | 'settings'>('products');
+  const [activeSettingsTab, setActiveSettingsTab] = useState<'home' | 'profil' | 'katalog' | 'kontak'>('home');
 
   // DB States
   const [products, setProducts] = useState<Product[]>([]);
@@ -185,12 +186,69 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     setTimeout(() => setNotification(null), 3000);
   };
 
+  const compressImage = async (file: File): Promise<File> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new window.Image();
+        img.src = event.target?.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          
+          const MAX_WIDTH = 1920;
+          const MAX_HEIGHT = 1080;
+          
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          let quality = 0.8;
+          if (file.size > 3 * 1024 * 1024) quality = 0.6;
+          if (file.size > 6 * 1024 * 1024) quality = 0.4;
+          if (file.size > 8 * 1024 * 1024) quality = 0.3;
+          
+          canvas.toBlob((blob) => {
+            if (!blob) return resolve(file);
+            const newFile = new File([blob], file.name, {
+              type: 'image/jpeg',
+              lastModified: Date.now(),
+            });
+            resolve(newFile);
+          }, 'image/jpeg', quality);
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, setter: (url: string) => void) => {
-    const file = e.target.files?.[0];
+    let file = e.target.files?.[0];
     if (!file) return;
 
     setIsUploading(true);
     try {
+      if (file.size > 2 * 1024 * 1024) {
+        showToast("Ukuran besar: Mengompresi gambar otomatis...", "info");
+        file = await compressImage(file);
+      }
+      
       const formData = new FormData();
       formData.append('file', file);
       
@@ -900,200 +958,417 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
             )}
           </div>
         )}
-
-
         {/* Tab 4: Settings Panel */}
         {activeTab === 'settings' && (
           <div className="grid grid-cols-1 gap-8 items-start max-w-4xl">
+            {/* Sub-tabs for Settings */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              <button 
+                onClick={() => setActiveSettingsTab('home')}
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeSettingsTab === 'home' ? 'bg-primary text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              >
+                🏠 Beranda & Footer
+              </button>
+              <button 
+                onClick={() => setActiveSettingsTab('profil')}
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeSettingsTab === 'profil' ? 'bg-primary text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              >
+                🏢 Halaman Profil
+              </button>
+              <button 
+                onClick={() => setActiveSettingsTab('katalog')}
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeSettingsTab === 'katalog' ? 'bg-primary text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              >
+                📚 Halaman Katalog
+              </button>
+              <button 
+                onClick={() => setActiveSettingsTab('kontak')}
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${activeSettingsTab === 'kontak' ? 'bg-primary text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+              >
+                📞 Halaman Kontak
+              </button>
+            </div>
+
             <form onSubmit={handleSettingsSubmit} className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6">
-              <h3 className="font-display font-bold text-xl text-primary border-b border-gray-100 pb-4">
-                Pengaturan Hero Section (Beranda)
-              </h3>
               
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Unggah Gambar Utama (Hero Image)</label>
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
-                    {settings.hero_image && <Image src={settings.hero_image} alt="Hero Preview" fill className="object-cover" />}
-                  </div>
-                  <div className="flex-grow">
-                    <input 
-                      type="file" 
-                      accept="image/*"
-                      onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, hero_image: url}))}
-                      className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
-                    />
-                    {isUploading && <span className="text-[10px] text-accent font-bold animate-pulse block mt-1">Mengunggah...</span>}
-                    <p className="text-[10px] text-gray-400 mt-2 font-medium">Maksimal ukuran file: 2MB. Resolusi disarankan: 1920x1080px.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Teks Judul Utama</label>
-                <input 
-                  type="text" required placeholder="Contoh: Distributor of Medical..."
-                  value={settings.hero_title || ''} onChange={(e) => setSettings({...settings, hero_title: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary font-bold"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Tata Letak (Layout)</label>
-                <select 
-                  value={settings.hero_layout || 'right'} onChange={(e) => setSettings({...settings, hero_layout: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary font-medium"
-                >
-                  <option value="left">Rata Kiri (Teks di kiri, gradasi di kiri)</option>
-                  <option value="center">Tengah (Teks di tengah, gradasi penuh)</option>
-                  <option value="right">Rata Kanan (Teks di kanan, gradasi di kanan)</option>
-                </select>
-              </div>
-
-              {/* ABOUT US SECTION */}
-              <div className="pt-6 border-t border-gray-100">
-                <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Tentang Kami (About Us)</h3>
-                
-                <div className="space-y-4">
+              {activeSettingsTab === 'home' && (
+                <>
+                  <h3 className="font-display font-bold text-xl text-primary border-b border-gray-100 pb-4">
+                    Pengaturan Hero Section (Beranda)
+                  </h3>
+                  
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Sub-judul</label>
-                    <input 
-                      type="text" placeholder="Contoh: Tentang Singkat"
-                      value={settings.about_subtitle || ''} onChange={(e) => setSettings({...settings, about_subtitle: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Utama</label>
-                    <input 
-                      type="text" placeholder="Contoh: Membangun Masa Depan..."
-                      value={settings.about_title || ''} onChange={(e) => setSettings({...settings, about_title: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary font-bold"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi / Narasi Panjang</label>
-                    <textarea 
-                      rows={5} placeholder="Isi cerita tentang perusahaan di sini..."
-                      value={settings.about_description || ''} onChange={(e) => setSettings({...settings, about_description: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary leading-relaxed"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Foto / Gambar Pendukung</label>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Unggah Gambar Utama (Hero Image)</label>
                     <div className="flex items-center gap-4 mb-2">
                       <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
-                        {settings.about_image && <Image src={settings.about_image} alt="About Preview" fill className="object-cover" />}
+                        {settings.hero_image && <Image src={settings.hero_image} alt="Hero Preview" fill className="object-cover" />}
                       </div>
                       <div className="flex-grow">
                         <input 
                           type="file" accept="image/*"
-                          onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, about_image: url}))}
+                          onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, hero_image: url}))}
                           className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
                         />
-                        {isUploading && <span className="text-[10px] text-accent font-bold animate-pulse block mt-1">Mengunggah...</span>}
+                        {isUploading && <span className="text-[10px] text-accent font-bold animate-pulse block mt-1">Mengompresi & Mengunggah...</span>}
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Teks Judul Utama (Hero Title)</label>
+                    <input 
+                      type="text" 
+                      value={settings.hero_title || ''} 
+                      onChange={(e) => setSettings({...settings, hero_title: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
 
-              {/* CALL TO ACTION SECTION */}
-              <div className="pt-6 border-t border-gray-100">
-                <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Ajakan (Call to Action / Bawah)</h3>
-                
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul</label>
-                    <input 
-                      type="text"
-                      value={settings.cta_title || ''} onChange={(e) => setSettings({...settings, cta_title: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
+                  {/* ABOUT US SECTION */}
+                  <div className="pt-6 border-t border-gray-100">
+                    <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Tentang Kami (Beranda)</h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Sub-judul</label>
+                        <input 
+                          type="text" placeholder="Contoh: Tentang Singkat"
+                          value={settings.about_subtitle || ''} onChange={(e) => setSettings({...settings, about_subtitle: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Utama</label>
+                        <input 
+                          type="text" placeholder="Contoh: Membangun Masa Depan..."
+                          value={settings.about_title || ''} onChange={(e) => setSettings({...settings, about_title: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary font-bold"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi / Narasi Panjang</label>
+                        <textarea 
+                          rows={5} placeholder="Isi cerita tentang perusahaan di sini..."
+                          value={settings.about_description || ''} onChange={(e) => setSettings({...settings, about_description: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary leading-relaxed"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Foto / Gambar Pendukung</label>
+                        <div className="flex items-center gap-4 mb-2">
+                          <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
+                            {settings.about_image && <Image src={settings.about_image} alt="About Preview" fill className="object-cover" />}
+                          </div>
+                          <div className="flex-grow">
+                            <input 
+                              type="file" accept="image/*"
+                              onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, about_image: url}))}
+                              className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                            />
+                            {isUploading && <span className="text-[10px] text-accent font-bold animate-pulse block mt-1">Mengompresi & Mengunggah...</span>}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi</label>
-                    <input 
-                      type="text"
-                      value={settings.cta_description || ''} onChange={(e) => setSettings({...settings, cta_description: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
+
+                  {/* CALL TO ACTION SECTION */}
+                  <div className="pt-6 border-t border-gray-100">
+                    <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Ajakan (Call to Action / Bawah)</h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul</label>
+                        <input 
+                          type="text"
+                          value={settings.cta_title || ''} onChange={(e) => setSettings({...settings, cta_title: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi</label>
+                        <input 
+                          type="text"
+                          value={settings.cta_description || ''} onChange={(e) => setSettings({...settings, cta_description: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Link WhatsApp</label>
+                        <input 
+                          type="url" placeholder="https://wa.me/..."
+                          value={settings.cta_whatsapp_url || ''} onChange={(e) => setSettings({...settings, cta_whatsapp_url: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Gambar Latar Belakang (Background)</label>
+                        <div className="flex flex-col gap-2 mb-2">
+                          <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200 mb-2">
+                            {settings.cta_bg_image && <Image src={settings.cta_bg_image} alt="CTA Bg" fill className="object-cover" />}
+                          </div>
+                          <input 
+                            type="file" accept="image/*"
+                            onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, cta_bg_image: url}))}
+                            className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Link WhatsApp</label>
-                    <input 
-                      type="url" placeholder="https://wa.me/..."
-                      value={settings.cta_whatsapp_url || ''} onChange={(e) => setSettings({...settings, cta_whatsapp_url: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
+
+                  {/* FOOTER & KONTAK */}
+                  <div className="pt-6 border-t border-gray-100">
+                    <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Kontak & Footer</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="md:col-span-2">
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi Perusahaan (Footer)</label>
+                        <textarea 
+                          rows={2}
+                          value={settings.footer_description || ''} onChange={(e) => setSettings({...settings, footer_description: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Alamat Lengkap</label>
+                        <input 
+                          type="text"
+                          value={settings.footer_address || ''} onChange={(e) => setSettings({...settings, footer_address: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Telepon / HP</label>
+                        <input 
+                          type="text"
+                          value={settings.footer_phone || ''} onChange={(e) => setSettings({...settings, footer_phone: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email</label>
+                        <input 
+                          type="email"
+                          value={settings.footer_email || ''} onChange={(e) => setSettings({...settings, footer_email: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Link Google Maps (Embed)</label>
+                        <input 
+                          type="url" placeholder="https://www.google.com/maps/embed?pb=..."
+                          value={settings.footer_map_url || ''} onChange={(e) => setSettings({...settings, footer_map_url: e.target.value})}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Gambar Latar Belakang (Background)</label>
-                    <div className="flex flex-col gap-2 mb-2">
+                </>
+              )}
+
+              {activeSettingsTab === 'profil' && (
+                <>
+                  <h3 className="font-display font-bold text-xl text-primary border-b border-gray-100 pb-4">
+                    Halaman Profil
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Hero (Atas)</label>
                       <input 
-                        type="file" accept="image/*"
-                        onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, cta_bg_image: url}))}
-                        className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                        type="text"
+                        value={settings.profil_hero_title || ''} onChange={(e) => setSettings({...settings, profil_hero_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Gambar Background Hero</label>
+                      <div className="flex items-center gap-4 mb-2">
+                        <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
+                          {settings.profil_hero_bg && <Image src={settings.profil_hero_bg} alt="Preview" fill className="object-cover" />}
+                        </div>
+                        <input 
+                          type="file" accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, profil_hero_bg: url}))}
+                          className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Sub-judul Tentang Kami</label>
+                      <input 
+                        type="text"
+                        value={settings.profil_about_subtitle || ''} onChange={(e) => setSettings({...settings, profil_about_subtitle: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Tentang Kami</label>
+                      <input 
+                        type="text"
+                        value={settings.profil_about_title || ''} onChange={(e) => setSettings({...settings, profil_about_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary font-bold"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi Paragraf 1</label>
+                      <textarea 
+                        rows={3}
+                        value={settings.profil_about_desc1 || ''} onChange={(e) => setSettings({...settings, profil_about_desc1: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi Paragraf 2</label>
+                      <textarea 
+                        rows={3}
+                        value={settings.profil_about_desc2 || ''} onChange={(e) => setSettings({...settings, profil_about_desc2: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi Paragraf 3</label>
+                      <textarea 
+                        rows={3}
+                        value={settings.profil_about_desc3 || ''} onChange={(e) => setSettings({...settings, profil_about_desc3: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div className="pt-4 border-t border-gray-100">
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Visi</label>
+                      <input 
+                        type="text"
+                        value={settings.profil_vision_title || ''} onChange={(e) => setSettings({...settings, profil_vision_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Teks Visi</label>
+                      <textarea 
+                        rows={3}
+                        value={settings.profil_vision_desc || ''} onChange={(e) => setSettings({...settings, profil_vision_desc: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div className="pt-4 border-t border-gray-100">
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Misi</label>
+                      <input 
+                        type="text"
+                        value={settings.profil_mission_title || ''} onChange={(e) => setSettings({...settings, profil_mission_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Daftar Misi (Pisahkan tiap poin dengan baris baru / Enter)</label>
+                      <textarea 
+                        rows={6}
+                        value={settings.profil_mission_list || ''} onChange={(e) => setSettings({...settings, profil_mission_list: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
                       />
                     </div>
                   </div>
-                </div>
-              </div>
+                </>
+              )}
 
-              {/* FOOTER & KONTAK */}
-              <div className="pt-6 border-t border-gray-100">
-                <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Kontak & Footer</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="md:col-span-2">
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi Perusahaan (Footer)</label>
-                    <textarea 
-                      rows={2}
-                      value={settings.footer_description || ''} onChange={(e) => setSettings({...settings, footer_description: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
+              {activeSettingsTab === 'katalog' && (
+                <>
+                  <h3 className="font-display font-bold text-xl text-primary border-b border-gray-100 pb-4">
+                    Halaman Katalog
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Hero (Atas)</label>
+                      <input 
+                        type="text"
+                        value={settings.katalog_hero_title || ''} onChange={(e) => setSettings({...settings, katalog_hero_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Gambar Background Hero</label>
+                      <div className="flex items-center gap-4 mb-2">
+                        <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
+                          {settings.katalog_hero_bg && <Image src={settings.katalog_hero_bg} alt="Preview" fill className="object-cover" />}
+                        </div>
+                        <input 
+                          type="file" accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, katalog_hero_bg: url}))}
+                          className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Konten Tengah</label>
+                      <input 
+                        type="text"
+                        value={settings.katalog_content_title || ''} onChange={(e) => setSettings({...settings, katalog_content_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Teks Deskripsi</label>
+                      <textarea 
+                        rows={3}
+                        value={settings.katalog_content_desc || ''} onChange={(e) => setSettings({...settings, katalog_content_desc: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Alamat Lengkap</label>
-                    <input 
-                      type="text"
-                      value={settings.footer_address || ''} onChange={(e) => setSettings({...settings, footer_address: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
+                </>
+              )}
+
+              {activeSettingsTab === 'kontak' && (
+                <>
+                  <h3 className="font-display font-bold text-xl text-primary border-b border-gray-100 pb-4">
+                    Halaman Kontak
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Hero (Atas)</label>
+                      <input 
+                        type="text"
+                        value={settings.kontak_hero_title || ''} onChange={(e) => setSettings({...settings, kontak_hero_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Gambar Background Hero</label>
+                      <div className="flex items-center gap-4 mb-2">
+                        <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
+                          {settings.kontak_hero_bg && <Image src={settings.kontak_hero_bg} alt="Preview" fill className="object-cover" />}
+                        </div>
+                        <input 
+                          type="file" accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, kontak_hero_bg: url}))}
+                          className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Formulir Pesan</label>
+                      <input 
+                        type="text"
+                        value={settings.kontak_form_title || ''} onChange={(e) => setSettings({...settings, kontak_form_title: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Teks Penjelasan Formulir</label>
+                      <textarea 
+                        rows={2}
+                        value={settings.kontak_form_desc || ''} onChange={(e) => setSettings({...settings, kontak_form_desc: e.target.value})}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Telepon / HP</label>
-                    <input 
-                      type="text"
-                      value={settings.footer_phone || ''} onChange={(e) => setSettings({...settings, footer_phone: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email</label>
-                    <input 
-                      type="email"
-                      value={settings.footer_email || ''} onChange={(e) => setSettings({...settings, footer_email: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Link Google Maps (Embed)</label>
-                    <input 
-                      type="url" placeholder="https://www.google.com/maps/embed?pb=..."
-                      value={settings.footer_map_url || ''} onChange={(e) => setSettings({...settings, footer_map_url: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
-                    />
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
 
               <div className="pt-4 border-t border-gray-100">
                 <button 
                   type="submit" 
-                  className="w-full sm:w-auto px-8 bg-primary hover:bg-primary-dark text-white text-sm font-bold py-3 rounded-xl transition-all shadow-lg shadow-primary/20"
+                  className="w-full bg-primary hover:bg-[#b0924b] text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
-                  Simpan Pengaturan
+                  <Save size={18} /> Simpan Pengaturan {activeSettingsTab.charAt(0).toUpperCase() + activeSettingsTab.slice(1)}
                 </button>
               </div>
             </form>
