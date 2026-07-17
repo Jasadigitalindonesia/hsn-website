@@ -11,14 +11,10 @@ export default async function Home() {
     const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
 
   const categories = [
-    { title: "Hospital Furniture", img: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=300&q=80" },
-    { title: "Patient Monitor", img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80" },
-    { title: "ECG Machine", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=300&q=80" },
-    { title: "Ultrasound", img: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=300&q=80" },
-    { title: "Infusion Pump", img: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=300&q=80" },
-    { title: "Operating Table", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=300&q=80" },
-    { title: "Aesthetic Laser", img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80" },
+    { title: "Aesthetic Equipment", img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80" },
+    { title: "Medical Equipment", img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80" },
     { title: "Consumables", img: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=300&q=80" },
+    { title: "Accessories", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=300&q=80" },
   ];
 
   // Fetch featured products from database
@@ -67,16 +63,13 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <AnimatedSection className="w-full lg:w-1/2">
-              <h4 className="text-primary font-bold uppercase tracking-widest mb-2 text-sm">{dict.about.title}</h4>
+              <h4 className="text-primary font-bold uppercase tracking-widest mb-2 text-sm">Tentang Singkat</h4>
               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
-                {dict.about.heading}
+                Membangun Masa Depan Industri Medis & Estetika Indonesia
               </h2>
               <div className="w-20 h-1 bg-gold-gradient mb-6"></div>
-              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                {dict.about.p1}
-              </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                {dict.about.p2}
+              <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                PT Harvest Selaras Nusantara adalah perusahaan yang bergerak di bidang distribusi alat medis dan teknologi estetika untuk memenuhi kebutuhan rumah sakit, klinik kecantikan, dokter spesialis, hingga fasilitas kesehatan di seluruh Indonesia. Dengan komitmen terhadap kualitas, inovasi, dan pelayanan, kami hadir sebagai mitra terpercaya dalam menghadirkan solusi terbaik bagi industri kesehatan dan estetika.
               </p>
               <Link href={`/profil`} className="inline-flex items-center gap-2 bg-primary hover:bg-[#b0924b] text-white font-semibold py-3 px-6 rounded transition-colors">
                 Baca Selengkapnya <ArrowRight className="w-4 h-4" />
@@ -96,9 +89,8 @@ export default async function Home() {
       <section className="py-16 bg-[#f8f9fa]">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Kategori Produk</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Kategori Produk Unggulan</h2>
             <div className="w-24 h-1 bg-gold-gradient mx-auto"></div>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Temukan berbagai macam peralatan medis dan estetika berkualitas tinggi sesuai dengan kebutuhan fasilitas kesehatan Anda.</p>
           </AnimatedSection>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -119,7 +111,7 @@ export default async function Home() {
           
           <AnimatedSection className="text-center mt-12" delay={0.2}>
             <Link href={`/kategori`} className="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary-hover hover:text-white font-semibold py-3 px-8 rounded transition-colors">
-              Lihat Semua Kategori
+              Lihat Semua Produk
             </Link>
           </AnimatedSection>
         </div>
@@ -173,37 +165,47 @@ export default async function Home() {
             <div className="w-24 h-1 bg-gold-gradient mx-auto"></div>
           </AnimatedSection>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
             <AnimatedSection delay={0.1} className="p-6 border border-[#222] rounded-lg hover:border-primary transition-colors bg-[#1a1a1a]">
               <div className="w-16 h-16 bg-[#222] text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Award className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Kualitas Terbaik</h3>
-              <p className="text-gray-400 text-sm">Produk bersertifikasi internasional dengan standar mutu kesehatan yang ketat.</p>
+              <h3 className="text-xl font-bold mb-3">Produk Berkualitas Internasional</h3>
             </AnimatedSection>
             
             <AnimatedSection delay={0.2} className="p-6 border border-[#222] rounded-lg hover:border-primary transition-colors bg-[#1a1a1a]">
               <div className="w-16 h-16 bg-[#222] text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <HeadphonesIcon className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Layanan Purna Jual</h3>
-              <p className="text-gray-400 text-sm">Dukungan teknis responsif dan jaminan pemeliharaan alat secara berkala.</p>
+              <h3 className="text-xl font-bold mb-3">Konsultasi Profesional</h3>
             </AnimatedSection>
             
             <AnimatedSection delay={0.3} className="p-6 border border-[#222] rounded-lg hover:border-primary transition-colors bg-[#1a1a1a]">
               <div className="w-16 h-16 bg-[#222] text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Lightbulb className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Inovasi Terkini</h3>
-              <p className="text-gray-400 text-sm">Menyediakan teknologi medis modern yang mengikuti perkembangan zaman.</p>
+              <h3 className="text-xl font-bold mb-3">Dukungan Teknis Berpengalaman</h3>
             </AnimatedSection>
             
             <AnimatedSection delay={0.4} className="p-6 border border-[#222] rounded-lg hover:border-primary transition-colors bg-[#1a1a1a]">
               <div className="w-16 h-16 bg-[#222] text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <ThumbsUp className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Kepuasan Pelanggan</h3>
-              <p className="text-gray-400 text-sm">Berorientasi pada solusi untuk memenuhi kebutuhan spesifik klien kami.</p>
+              <h3 className="text-xl font-bold mb-3">Instalasi & Pelatihan</h3>
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.5} className="p-6 border border-[#222] rounded-lg hover:border-primary transition-colors bg-[#1a1a1a]">
+              <div className="w-16 h-16 bg-[#222] text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <ThumbsUp className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Layanan Purna Jual</h3>
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.6} className="p-6 border border-[#222] rounded-lg hover:border-primary transition-colors bg-[#1a1a1a]">
+              <div className="w-16 h-16 bg-[#222] text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <ThumbsUp className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Distribusi ke Seluruh Indonesia</h3>
             </AnimatedSection>
           </div>
         </div>
@@ -269,15 +271,12 @@ export default async function Home() {
         <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Butuh Konsultasi Pengadaan Alat Kesehatan?</h2>
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">Tim ahli kami siap membantu Anda memilih perangkat medis dan estetika yang paling tepat untuk fasilitas Anda.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Siap Mengembangkan Klinik atau Fasilitas Kesehatan Anda?</h2>
+            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">Temukan solusi Medical & Aesthetic Equipment terbaik bersama PT Harvest Selaras Nusantara dan tingkatkan kualitas layanan dengan teknologi terpercaya.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a href="https://wa.me/6285284222200" className="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg">
-                <Phone className="w-5 h-5" /> Hubungi WhatsApp
+                Konsultasi Sekarang
               </a>
-              <Link href={`/kontak`} className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-4 px-8 rounded-full transition-colors flex items-center justify-center gap-2">
-                <Mail className="w-5 h-5" /> Kirim Email
-              </Link>
             </div>
           </AnimatedSection>
         </div>

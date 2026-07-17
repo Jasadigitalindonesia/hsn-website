@@ -39,10 +39,18 @@ export default async function Page() {
         <div className="container mx-auto px-4">
           
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">{pageDict?.heading || 'Unduh Katalog Resmi Kami'}</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              Dapatkan informasi lengkap mengenai spesifikasi, fitur, dan detail produk-produk medis serta estetika kami melalui katalog elektronik (PDF) yang tersedia di bawah ini.
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Katalog Produk</h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-4">
+              Temukan informasi lengkap mengenai seluruh produk yang kami distribusikan melalui katalog digital resmi PT Harvest Selaras Nusantara.
             </p>
+            <p className="text-gray-600 text-lg leading-relaxed mb-2 text-left md:text-center">Di dalam katalog tersedia:</p>
+            <ul className="text-gray-600 text-lg leading-relaxed text-left inline-block">
+              <li>• Detail Produk</li>
+              <li>• Spesifikasi Teknis</li>
+              <li>• Fitur Produk</li>
+              <li>• Informasi Brand</li>
+              <li>• Brosur Digital</li>
+            </ul>
           </div>
 
           <div className="flex justify-between items-center mb-8 flex-col sm:flex-row gap-4">
@@ -83,7 +91,7 @@ export default async function Page() {
                   <div className="flex items-center justify-between mt-auto">
                     <span className="text-xs text-gray-400 font-medium">Diperbarui: {katalog.date}</span>
                     <a href="#" className="inline-flex items-center gap-2 bg-primary/10 hover:bg-primary text-primary hover:text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm">
-                      <Download className="w-4 h-4" /> Unduh
+                      <Download className="w-4 h-4" /> Unduh Katalog
                     </a>
                   </div>
                 </div>

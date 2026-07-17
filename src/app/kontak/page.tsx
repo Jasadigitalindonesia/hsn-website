@@ -15,7 +15,7 @@ export default async function Page() {
       <div className="bg-primary pt-16 pb-16 border-b border-primary-hover relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 shadow-sm">{pageDict?.title || 'KONTAK KAMI'}</h1>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 shadow-sm">Hubungi Kami</h1>
           <div className="w-24 h-1 bg-white/50 mx-auto rounded-full mb-6"></div>
           <div className="flex justify-center items-center space-x-2 text-white/80 text-sm font-medium">
             <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
@@ -29,12 +29,9 @@ export default async function Page() {
         
         {/* Intro text */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">{pageDict?.heading}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Hubungi Kami</h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-4">
-            {pageDict?.p1}
-          </p>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            {pageDict?.p3}
+            Kami siap membantu Anda mendapatkan solusi Medical & Aesthetic Equipment yang sesuai dengan kebutuhan bisnis dan pelayanan kesehatan Anda.
           </p>
         </div>
 

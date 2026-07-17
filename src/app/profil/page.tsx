@@ -18,13 +18,13 @@ export default async function Page() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight shadow-sm">
-              {aboutDict?.title || 'Tentang Kami'}
+              Tentang PT Harvest Selaras Nusantara
             </h1>
             <div className="w-24 h-1 bg-white/50 mx-auto rounded-full mb-6"></div>
             <div className="flex items-center justify-center space-x-2 text-white/80 text-sm font-medium">
               <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
-              <span className="text-white">{aboutDict?.title || 'Tentang Kami'}</span>
+              <span className="text-white">Tentang Kami</span>
             </div>
           </AnimatedSection>
         </div>
@@ -37,23 +37,17 @@ export default async function Page() {
             <AnimatedSection className="w-full lg:w-1/2">
               <div className="relative">
                 <div className="absolute -left-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
-                <h4 className="text-primary font-bold uppercase tracking-widest mb-3 text-sm relative z-10">Kenali Lebih Dekat</h4>
+                <h4 className="text-primary font-bold uppercase tracking-widest mb-3 text-sm relative z-10">Tentang Kami</h4>
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-8 leading-tight relative z-10">
-                  {aboutDict?.heading || 'Mitra Profesional Anda'}
+                  Tentang PT Harvest Selaras Nusantara
                 </h2>
                 
                 <div className="prose prose-lg text-gray-600 max-w-none relative z-10">
                   <p className="font-medium text-gray-800 text-xl leading-relaxed mb-6">
-                    {aboutDict?.p1}
+                    PT Harvest Selaras Nusantara merupakan distributor B2B alat medis dan estetika yang berkomitmen menghadirkan produk berkualitas internasional untuk mendukung perkembangan industri kesehatan dan estetika di Indonesia.
                   </p>
                   <p className="mb-6 leading-relaxed">
-                    {aboutDict?.p2}
-                  </p>
-                  <p className="mb-6 leading-relaxed">
-                    {aboutDict?.p3}
-                  </p>
-                  <p className="leading-relaxed font-semibold italic text-gray-700 border-l-4 border-primary pl-4 py-2 bg-gray-50 rounded-r-lg">
-                    "{aboutDict?.p4}"
+                    Kami percaya bahwa teknologi yang tepat mampu meningkatkan kualitas pelayanan, memperkuat kepercayaan pasien, dan mendukung pertumbuhan bisnis setiap mitra kami. Oleh karena itu, kami tidak hanya menyediakan produk, tetapi juga menghadirkan layanan konsultasi, instalasi, pelatihan, serta dukungan purna jual yang profesional.
                   </p>
                 </div>
               </div>
@@ -88,9 +82,7 @@ export default async function Page() {
               </div>
               <h3 className="text-2xl font-black text-gray-900 mb-4">Visi Kami</h3>
               <p className="text-gray-600 leading-relaxed text-lg">
-                {lang === 'id' 
-                  ? 'Menjadi perusahaan distributor alat kesehatan dan estetika terkemuka di Indonesia yang diakui atas kualitas produk, integritas layanan, dan kontribusi nyata dalam memajukan standar pelayanan kesehatan nasional.'
-                  : 'To become the leading distributor of medical and aesthetic equipment in Indonesia, recognized for product quality, service integrity, and tangible contributions in advancing national healthcare standards.'}
+                Menjadi distributor Medical & Aesthetic Equipment terpercaya di Indonesia yang menghadirkan solusi inovatif, berkualitas, dan bernilai bagi dunia kesehatan dan estetika.
               </p>
             </div>
             
@@ -102,15 +94,23 @@ export default async function Page() {
               <ul className="space-y-4 text-gray-600 text-lg">
                 <li className="flex items-start">
                   <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>{lang === 'id' ? 'Menyediakan peralatan medis berteknologi mutakhir dengan standar internasional.' : 'Providing cutting-edge medical equipment with international standards.'}</span>
+                  <span>Menyediakan produk berkualitas internasional.</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>{lang === 'id' ? 'Memberikan layanan purna jual yang responsif, profesional, dan dapat diandalkan.' : 'Delivering responsive, professional, and reliable after-sales service.'}</span>
+                  <span>Memberikan pelayanan profesional kepada setiap pelanggan.</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
-                  <span>{lang === 'id' ? 'Membangun kemitraan jangka panjang yang saling menguntungkan dengan setiap pelanggan.' : 'Building mutually beneficial long-term partnerships with every client.'}</span>
+                  <span>Menghadirkan solusi teknologi yang inovatif.</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
+                  <span>Menjalin kemitraan jangka panjang.</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-6 h-6 text-primary mr-3 shrink-0 mt-0.5" />
+                  <span>Mendukung perkembangan industri kesehatan dan estetika di Indonesia.</span>
                 </li>
               </ul>
             </div>

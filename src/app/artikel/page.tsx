@@ -35,7 +35,7 @@ export default async function Page() {
         <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 shadow-sm">{pageDict?.title || 'Artikel & Berita'}</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 shadow-sm">Artikel & Wawasan</h1>
             <div className="w-24 h-1 bg-white/50 mx-auto rounded-full mb-6"></div>
             <div className="flex justify-center items-center space-x-2 text-white/80 text-sm font-medium">
               <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
@@ -51,6 +51,14 @@ export default async function Page() {
           
           {/* Main Content - Blog Grid */}
           <div className="w-full lg:w-2/3 xl:w-3/4">
+            
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Artikel & Wawasan</h2>
+              <p className="text-gray-600 leading-relaxed">
+                Ikuti berbagai informasi terbaru mengenai perkembangan teknologi medis dan estetika, inovasi produk, serta tips yang bermanfaat bagi klinik dan fasilitas kesehatan.
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {articles.map((article: any, i: number) => (
                 <article key={article.id || i} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col h-full">

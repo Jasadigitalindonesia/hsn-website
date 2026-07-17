@@ -42,11 +42,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-2">{productsDict?.title || 'Produk Kami'}</h1>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-2">Produk Berkualitas</h1>
               <div className="flex items-center space-x-2 text-white/80 text-sm font-medium">
                 <Link href={`/`} className="hover:text-white transition-colors">Home</Link>
                 <span>/</span>
-                <span className="text-white">{productsDict?.title || 'Produk'}</span>
+                <span className="text-white">Produk</span>
               </div>
             </div>
             
@@ -98,9 +98,18 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
           {/* Main Content */}
           <div className="w-full lg:w-3/4">
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">{productsDict?.heading || 'Solusi Medis Terbaik'}</h2>
-              <p className="text-gray-600 leading-relaxed mb-4">{productsDict?.desc1}</p>
-              <p className="text-gray-600 leading-relaxed">{productsDict?.desc3}</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Produk Berkualitas untuk Industri Medis & Estetika</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">PT Harvest Selaras Nusantara menghadirkan berbagai produk pilihan dari brand terpercaya yang telah memenuhi standar kualitas internasional.</p>
+              <p className="text-gray-600 leading-relaxed mb-2">Setiap produk dilengkapi dengan informasi:</p>
+              <ul className="list-disc list-inside text-gray-600 space-y-1 ml-2">
+                <li>Nama Produk</li>
+                <li>Brand</li>
+                <li>Deskripsi</li>
+                <li>Spesifikasi</li>
+                <li>Keunggulan Produk</li>
+                <li>Brosur</li>
+                <li>Tombol Permintaan Penawaran</li>
+              </ul>
             </div>
             
             <div className="flex justify-between items-center mb-6">
