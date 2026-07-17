@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
+    // @ts-ignore
     const settings = await prisma.siteSetting.findMany();
     return NextResponse.json({ status: 'ok', count: settings.length });
   } catch (error: any) {

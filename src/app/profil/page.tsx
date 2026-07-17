@@ -13,6 +13,7 @@ export default async function Page() {
   const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
   
   // @ts-ignore - Bypass VSCode TS Server cache issue
+  // @ts-ignore
   const dbSettings = await prisma.siteSetting.findMany({ where: { category: 'profil' } });
   const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
     acc[curr.key] = curr.value;

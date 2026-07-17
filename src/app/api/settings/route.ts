@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     // @ts-ignore - Bypass Vercel build cache issue
+    // @ts-ignore
     const settings = await prisma.siteSetting.findMany();
     // Convert array to key-value object for easier frontend consumption
     const settingsMap = settings.reduce((acc: any, curr: any) => {
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
 
     // Upsert all settings in a transaction
     const transaction = settings.map((setting: any) => {
+      // @ts-ignore
       // @ts-ignore
       return prisma.siteSetting.upsert({
         where: { key: setting.key },
