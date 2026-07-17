@@ -9,7 +9,7 @@ export async function GET() {
     // @ts-ignore - Bypass Vercel build cache issue
     const settings = await prisma.siteSetting.findMany();
     // Convert array to key-value object for easier frontend consumption
-    const settingsMap = settings.reduce((acc: any, curr) => {
+    const settingsMap = settings.reduce((acc: any, curr: any) => {
       acc[curr.key] = curr.value;
       return acc;
     }, {});
