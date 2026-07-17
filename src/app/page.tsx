@@ -13,13 +13,20 @@ export const revalidate = 0; // Force real-time updates
 export default async function Home() {
     const lang: string = "";
 
-  // @ts-ignore - Bypass VSCode TS Server cache issue for prisma.siteSetting
-  // Fetch settings from database
-  const dbSettings = await prisma.siteSetting.findMany();
-  const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
-    acc[curr.key] = curr.value;
-    return acc;
-  }, {});
+  let dbSettings: any[] = [];
+  let settings: Record<string, string> = {};
+  let featuredProducts: any[] = [];
+
+  try {
+    // @ts-ignore
+    dbSettings = await prisma.siteSetting.findMany();
+    settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
+      acc[curr.key] = curr.value;
+      return acc;
+    }, {});
+  } catch (error) {
+    console.error("DB Settings Error:", error);
+  }
 
   const categories = [
     { title: "Aesthetic Equipment", img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80" },
@@ -28,34 +35,42 @@ export default async function Home() {
     { title: "Accessories", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=300&q=80" },
   ];
 
-  // Fetch featured products from database
-  const dbFeaturedProducts = await prisma.product.findMany({
-    where: { isFeatured: true },
-    orderBy: { createdAt: 'desc' },
-    take: 3,
-    include: { category: true }
-  });
-
-  const featuredProducts = dbFeaturedProducts.map((p) => ({
-    id: p.id,
-    name: p.name,
-    category: p.category?.name || p.categoryId || 'Uncategorized',
-    image: p.image || 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80',
-  }));
-
-  // If there are no featured products, we can fetch the latest 3 instead
-  if (featuredProducts.length === 0) {
-    const latestProducts = await prisma.product.findMany({
+  try {
+    const dbFeaturedProducts = await prisma.product.findMany({
+      where: { isFeatured: true },
       orderBy: { createdAt: 'desc' },
       take: 3,
       include: { category: true }
     });
-    featuredProducts.push(...latestProducts.map((p) => ({
+
+    featuredProducts = dbFeaturedProducts.map((p) => ({
       id: p.id,
       name: p.name,
       category: p.category?.name || p.categoryId || 'Uncategorized',
       image: p.image || 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80',
-    })));
+    }));
+
+    if (featuredProducts.length === 0) {
+      const latestProducts = await prisma.product.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 3,
+        include: { category: true }
+      });
+      featuredProducts = latestProducts.map((p) => ({
+        id: p.id,
+        name: p.name,
+        category: p.category?.name || p.categoryId || 'Uncategorized',
+        image: p.image || 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80',
+      }));
+    }
+  } catch (error) {
+    console.error("DB Products Error:", error);
+    // Fallback products if DB fails
+    featuredProducts = [
+      { id: '1', name: 'Laser Hair Removal System', category: 'Aesthetic', image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80' },
+      { id: '2', name: 'Ultrasound Scanner', category: 'Medical', image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=400&q=80' },
+      { id: '3', name: 'Surgical Light', category: 'Equipment', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&q=80' }
+    ];
   }
 
   const articles = [
