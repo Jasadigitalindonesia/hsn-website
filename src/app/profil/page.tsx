@@ -126,7 +126,7 @@ export default async function Page() {
                 <h3 className="text-3xl font-bold text-gray-900 mb-6">{settings.profil_mission_title || 'Misi Kami'}</h3>
                 <ul className="space-y-5">
                   {(settings.profil_mission_list || 'Menyediakan produk medis dan estetika berstandar internasional yang aman, efektif, dan inovatif.\nMemberikan pelayanan pelanggan yang prima, termasuk konsultasi teknis, pelatihan penggunaan alat, dan layanan perbaikan yang cepat.\nMembangun kemitraan strategis dengan rumah sakit, klinik kecantikan, dan profesional medis di seluruh Indonesia.\nTerus mengikuti perkembangan teknologi medis terkini untuk memberikan solusi yang relevan dengan kebutuhan pasar.\nMendukung peningkatan standar fasilitas kesehatan di Indonesia melalui ketersediaan perangkat berkualitas tinggi.')
-                    .split('\n').filter(Boolean).map((mission, index) => (
+                    .split('\n').filter(Boolean).map((mission: string, index: number) => (
                     <li key={index} className="flex items-start gap-4">
                       <div className="mt-1 bg-accent/10 p-1 rounded text-accent shrink-0">
                         <CheckCircle2 size={18} />
