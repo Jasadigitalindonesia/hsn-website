@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { SignJWT } from 'jose';
 
 export async function POST(request: Request) {
   try {
@@ -9,23 +8,13 @@ export async function POST(request: Request) {
     const validPassword = process.env.ADMIN_PASSWORD || 'HsnSecure2026#';
 
     if (username === validUsername && password === validPassword) {
-      const secret = new TextEncoder().encode(
-        process.env.JWT_SECRET || 'fallback_secret_key_dont_use_in_prod'
-      );
+      const expectedToken = process.env.JWT_SECRET || 'fallback_secret_key_dont_use_in_prod';
       
-      const alg = 'HS256';
-      
-      const jwt = await new SignJWT({ user: username, role: 'admin' })
-        .setProtectedHeader({ alg })
-        .setIssuedAt()
-        .setExpirationTime('8h')
-        .sign(secret);
-
       const response = NextResponse.json({ success: true }, { status: 200 });
       
       response.cookies.set({
         name: 'hsn_admin_token',
-        value: jwt,
+        value: expectedToken,
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
