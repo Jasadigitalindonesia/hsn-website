@@ -28,25 +28,45 @@ export default function AdminPage() {
 
   // Check login state on mount
   useEffect(() => {
-    const auth = sessionStorage.getItem('hsn_admin_auth');
-    if (auth === 'true') {
-      setIsLoggedIn(true);
-    }
+    // Check if user is logged in by verifying if they can hit an API endpoint or by a dedicated auth check.
+    // Since the API uses HttpOnly cookies, we can just try to fetch a protected route or have a dedicated endpoint.
+    // For simplicity, we assume they are not logged in until proven otherwise (a simple approach is setting a non-httponly cookie as a flag, or checking an endpoint).
+    // Let's create a quick check.
+    const checkAuth = async () => {
+      try {
+        // If this fails, the proxy will block it.
+        const res = await fetch('/api/products');
+        if (res.ok) {
+          setIsLoggedIn(true);
+        }
+      } catch (e) {
+        setIsLoggedIn(false);
+      }
+    };
+    checkAuth();
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'admin_hsn' && password === 'HsnSecure2026#') {
-      sessionStorage.setItem('hsn_admin_auth', 'true');
-      setIsLoggedIn(true);
-      setLoginError('');
-    } else {
-      setLoginError('Username atau password salah!');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      if (res.ok) {
+        setIsLoggedIn(true);
+        setLoginError('');
+      } else {
+        setLoginError('Username atau password salah!');
+      }
+    } catch (e) {
+      setLoginError('Terjadi kesalahan jaringan.');
     }
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('hsn_admin_auth');
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
     setIsLoggedIn(false);
   };
 
