@@ -76,13 +76,13 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <AnimatedSection className="w-full lg:w-1/2">
-              <h4 className="text-primary font-bold uppercase tracking-widest mb-2 text-sm">Tentang Singkat</h4>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
-                Membangun Masa Depan Industri Medis & Estetika Indonesia
+              <h4 className="text-primary font-bold uppercase tracking-widest mb-2 text-sm">{settings.about_subtitle || "Tentang Singkat"}</h4>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight whitespace-pre-line">
+                {settings.about_title || "Membangun Masa Depan Industri Medis & Estetika Indonesia"}
               </h2>
               <div className="w-20 h-1 bg-gold-gradient mb-6"></div>
-              <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                PT Harvest Selaras Nusantara adalah perusahaan yang bergerak di bidang distribusi alat medis dan teknologi estetika untuk memenuhi kebutuhan rumah sakit, klinik kecantikan, dokter spesialis, hingga fasilitas kesehatan di seluruh Indonesia. Dengan komitmen terhadap kualitas, inovasi, dan pelayanan, kami hadir sebagai mitra terpercaya dalam menghadirkan solusi terbaik bagi industri kesehatan dan estetika.
+              <p className="text-gray-600 mb-8 text-lg leading-relaxed whitespace-pre-line">
+                {settings.about_description || "PT Harvest Selaras Nusantara adalah perusahaan yang bergerak di bidang distribusi alat medis dan teknologi estetika untuk memenuhi kebutuhan rumah sakit, klinik kecantikan, dokter spesialis, hingga fasilitas kesehatan di seluruh Indonesia. Dengan komitmen terhadap kualitas, inovasi, dan pelayanan, kami hadir sebagai mitra terpercaya dalam menghadirkan solusi terbaik bagi industri kesehatan dan estetika."}
               </p>
               <Link href={`/profil`} className="inline-flex items-center gap-2 bg-primary hover:bg-[#b0924b] text-white font-semibold py-3 px-6 rounded transition-colors">
                 Baca Selengkapnya <ArrowRight className="w-4 h-4" />
@@ -90,7 +90,7 @@ export default async function Home() {
             </AnimatedSection>
             <AnimatedSection className="w-full lg:w-1/2" delay={0.2}>
               <div className="relative rounded-lg overflow-hidden shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="About HSN" className="w-full h-auto object-cover aspect-video" />
+                <img src={settings.about_image || "https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"} alt="About HSN" className="w-full h-auto object-cover aspect-video" />
                 <div className="absolute inset-0 border-4 border-white opacity-20 m-4 rounded"></div>
               </div>
             </AnimatedSection>
@@ -281,13 +281,16 @@ export default async function Home() {
 
       {/* 8. CTA CONTACT */}
       <section className="py-16 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+        <div 
+          className="absolute inset-0 opacity-10 bg-cover bg-center"
+          style={{ backgroundImage: `url('${settings.cta_bg_image || "https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"}')` }}
+        ></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Siap Mengembangkan Klinik atau Fasilitas Kesehatan Anda?</h2>
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">Temukan solusi Medical & Aesthetic Equipment terbaik bersama PT Harvest Selaras Nusantara dan tingkatkan kualitas layanan dengan teknologi terpercaya.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 whitespace-pre-line">{settings.cta_title || "Siap Mengembangkan Klinik atau Fasilitas Kesehatan Anda?"}</h2>
+            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto whitespace-pre-line">{settings.cta_description || "Temukan solusi Medical & Aesthetic Equipment terbaik bersama PT Harvest Selaras Nusantara dan tingkatkan kualitas layanan dengan teknologi terpercaya."}</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="https://wa.me/6285284222200" className="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg">
+              <a href={settings.cta_whatsapp_url || "https://wa.me/6285284222200"} className="bg-white text-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg">
                 Konsultasi Sekarang
               </a>
             </div>
@@ -295,7 +298,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <Footer dict={dict.footer} lang={lang} />
+      <Footer dict={dict.footer} lang={lang} settings={settings} />
     </main>
   );
 }

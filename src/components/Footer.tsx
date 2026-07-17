@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Globe, MessageCircle, ArrowRight } from "lucide-react";
 
-export default function Footer({ dict, lang }: { dict: any, lang: string }) {
+export default function Footer({ dict, lang, settings = {} }: { dict: any, lang: string, settings?: Record<string, string> }) {
   return (
     <footer className="bg-[#111111] text-[#999999] text-sm pt-16 pb-8 border-t-4 border-primary">
       <div className="container mx-auto px-4">
@@ -14,7 +14,7 @@ export default function Footer({ dict, lang }: { dict: any, lang: string }) {
           <div>
             <div className="text-2xl font-black tracking-tighter text-white mb-6">HSN</div>
             <p className="mb-6 leading-relaxed">
-              {dict.about_desc}
+              {settings.footer_description || dict.about_desc}
             </p>
             <div className="flex space-x-3">
               <a href="#" className="w-8 h-8 rounded-full bg-[#222222] flex items-center justify-center hover:bg-primary hover:text-white transition-colors" title="Instagram">
@@ -48,15 +48,19 @@ export default function Footer({ dict, lang }: { dict: any, lang: string }) {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 text-primary mr-3 shrink-0 mt-0.5" />
-                <span>Grand Harvest Cluster Belvoir BC 19, Kel. Balas Klumprik Kec.Wiyung Kota Surabaya, Jawa Timur 60222</span>
+                <span>{settings.footer_address || "Grand Harvest Cluster Belvoir BC 19, Kel. Balas Klumprik Kec.Wiyung Kota Surabaya, Jawa Timur 60222"}</span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-primary mr-3 shrink-0" />
-                <a href="https://wa.me/6285284222200" className="hover:text-primary transition-colors">+6285284222200</a>
+                <a href={settings.footer_phone ? `https://wa.me/${settings.footer_phone.replace(/\D/g, '')}` : "https://wa.me/6285284222200"} className="hover:text-primary transition-colors">
+                  {settings.footer_phone || "+6285284222200"}
+                </a>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-primary mr-3 shrink-0" />
-                <a href="mailto:info@harvestselarasnusantara.com" className="hover:text-primary transition-colors">info@harvestselarasnusantara.com</a>
+                <a href={settings.footer_email ? `mailto:${settings.footer_email}` : "mailto:info@harvestselarasnusantara.com"} className="hover:text-primary transition-colors">
+                  {settings.footer_email || "info@harvestselarasnusantara.com"}
+                </a>
               </li>
             </ul>
           </div>

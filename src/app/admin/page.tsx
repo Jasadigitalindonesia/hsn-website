@@ -950,6 +950,144 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
                 </select>
               </div>
 
+              {/* ABOUT US SECTION */}
+              <div className="pt-6 border-t border-gray-100">
+                <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Tentang Kami (About Us)</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Sub-judul</label>
+                    <input 
+                      type="text" placeholder="Contoh: Tentang Singkat"
+                      value={settings.about_subtitle || ''} onChange={(e) => setSettings({...settings, about_subtitle: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul Utama</label>
+                    <input 
+                      type="text" placeholder="Contoh: Membangun Masa Depan..."
+                      value={settings.about_title || ''} onChange={(e) => setSettings({...settings, about_title: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary font-bold"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi / Narasi Panjang</label>
+                    <textarea 
+                      rows={5} placeholder="Isi cerita tentang perusahaan di sini..."
+                      value={settings.about_description || ''} onChange={(e) => setSettings({...settings, about_description: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary leading-relaxed"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Foto / Gambar Pendukung</label>
+                    <div className="flex items-center gap-4 mb-2">
+                      <div className="relative w-32 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 border border-gray-200">
+                        {settings.about_image && <Image src={settings.about_image} alt="About Preview" fill className="object-cover" />}
+                      </div>
+                      <div className="flex-grow">
+                        <input 
+                          type="file" accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, about_image: url}))}
+                          className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                        />
+                        {isUploading && <span className="text-[10px] text-accent font-bold animate-pulse block mt-1">Mengunggah...</span>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CALL TO ACTION SECTION */}
+              <div className="pt-6 border-t border-gray-100">
+                <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Ajakan (Call to Action / Bawah)</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Judul</label>
+                    <input 
+                      type="text"
+                      value={settings.cta_title || ''} onChange={(e) => setSettings({...settings, cta_title: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi</label>
+                    <input 
+                      type="text"
+                      value={settings.cta_description || ''} onChange={(e) => setSettings({...settings, cta_description: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Link WhatsApp</label>
+                    <input 
+                      type="url" placeholder="https://wa.me/..."
+                      value={settings.cta_whatsapp_url || ''} onChange={(e) => setSettings({...settings, cta_whatsapp_url: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Gambar Latar Belakang (Background)</label>
+                    <div className="flex flex-col gap-2 mb-2">
+                      <input 
+                        type="file" accept="image/*"
+                        onChange={(e) => handleFileUpload(e, (url) => setSettings({...settings, cta_bg_image: url}))}
+                        className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* FOOTER & KONTAK */}
+              <div className="pt-6 border-t border-gray-100">
+                <h3 className="font-display font-bold text-xl text-primary mb-4">Pengaturan Kontak & Footer</h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="md:col-span-2">
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Deskripsi Perusahaan (Footer)</label>
+                    <textarea 
+                      rows={2}
+                      value={settings.footer_description || ''} onChange={(e) => setSettings({...settings, footer_description: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Alamat Lengkap</label>
+                    <input 
+                      type="text"
+                      value={settings.footer_address || ''} onChange={(e) => setSettings({...settings, footer_address: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Telepon / HP</label>
+                    <input 
+                      type="text"
+                      value={settings.footer_phone || ''} onChange={(e) => setSettings({...settings, footer_phone: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email</label>
+                    <input 
+                      type="email"
+                      value={settings.footer_email || ''} onChange={(e) => setSettings({...settings, footer_email: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Link Google Maps (Embed)</label>
+                    <input 
+                      type="url" placeholder="https://www.google.com/maps/embed?pb=..."
+                      value={settings.footer_map_url || ''} onChange={(e) => setSettings({...settings, footer_map_url: e.target.value})}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-accent outline-none text-primary"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="pt-4 border-t border-gray-100">
                 <button 
                   type="submit" 
