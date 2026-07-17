@@ -8,8 +8,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     // @ts-ignore - Bypass Vercel build cache issue
-    // @ts-ignore
-    const settings = await prisma.siteSetting.findMany();
+    const settings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
     // Convert array to key-value object for easier frontend consumption
     const settingsMap = settings.reduce((acc: any, curr: any) => {
       acc[curr.key] = curr.value;
@@ -35,17 +34,16 @@ export async function POST(request: Request) {
     }
 
     // Upsert all settings in a transaction
-    const transaction = settings.map((setting: any) => {
-      // @ts-ignore
-      // @ts-ignore
-      return prisma.siteSetting.upsert({
-        where: { key: setting.key },
-        update: { value: String(setting.value), category: setting.category || 'general' },
-        create: { key: setting.key, value: String(setting.value), category: setting.category || 'general' }
-      })
-      });
-
-    await prisma.$transaction(transaction);
+    await prisma.$transaction(
+      settings.map((setting: any) =>
+        prisma.$executeRawUnsafe(
+          'INSERT INTO "SiteSetting" (key, value, category, "updatedAt") VALUES ($1, $2, $3, NOW()) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, category = EXCLUDED.category, "updatedAt" = NOW()',
+          setting.key,
+          String(setting.value),
+          setting.category || 'general'
+        )
+      )
+    );
 
     return NextResponse.json({ success: true, message: 'Settings updated successfully' });
   } catch (error) {

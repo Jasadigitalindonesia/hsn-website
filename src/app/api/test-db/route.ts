@@ -3,8 +3,7 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
-    // @ts-ignore
-    const settings = await prisma.siteSetting.findMany();
+    const settings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
     return NextResponse.json({ status: 'ok', count: settings.length });
   } catch (error: any) {
     return NextResponse.json({ 

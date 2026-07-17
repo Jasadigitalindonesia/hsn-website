@@ -6,12 +6,12 @@ const prisma = new PrismaClient();
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   try {
     const params = await context.params;
-    // @ts-ignore
-    const image = await prisma.imageStorage.findUnique({
-      where: { id: params.id }
-    });
+    const images = await prisma.$queryRawUnsafe('SELECT * FROM "ImageStorage" WHERE id = $1', params.id) as any[];
+    const image = images[0];
     
-    if (!image) return new NextResponse('Not found', { status: 404 });
+    if (!image) {
+      return new NextResponse('Image not found', { status: 404 });
+    }
     
     const base64Data = image.data.replace(/^data:image\/\w+;base64,/, '');
     const buffer = Buffer.from(base64Data, 'base64');

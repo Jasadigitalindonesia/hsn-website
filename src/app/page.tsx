@@ -18,8 +18,7 @@ export default async function Home() {
   let featuredProducts: any[] = [];
 
   try {
-    // @ts-ignore
-    dbSettings = await prisma.siteSetting.findMany();
+    dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
     settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
       acc[curr.key] = curr.value;
       return acc;

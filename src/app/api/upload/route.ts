@@ -24,17 +24,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "File too large after compression" }, { status: 413 });
     }
 
-    // @ts-ignore
-    const image = await prisma.imageStorage.create({
-      data: {
-        data: `data:${mimeType};base64,${base64}`,
-        mimeType: mimeType
-      }
-    });
+    const crypto = require('crypto');
+    const id = crypto.randomUUID();
+    await prisma.$executeRawUnsafe(
+      'INSERT INTO "ImageStorage" (id, data, "mimeType", "createdAt") VALUES ($1, $2, $3, NOW())',
+      id,
+      `data:${mimeType};base64,${base64}`,
+      mimeType
+    );
 
     return NextResponse.json({ 
       success: true, 
-      url: `/api/images/${image.id}`
+      url: `/api/images/${id}`
     });
   } catch (error) {
     console.error("Error saving image:", error);
