@@ -12,7 +12,7 @@ export default async function Page() {
   const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
   
   // @ts-ignore - Bypass VSCode TS Server cache issue
-  const dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting" WHERE category IN ($1, $2)', 'kontak', 'Hero') as any[];
+  const dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
   const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
     acc[curr.key] = curr.value;
     return acc;
@@ -56,31 +56,29 @@ export default async function Page() {
                   <div className="bg-primary/10 p-4 rounded-2xl text-primary shrink-0 mt-1">
                     <MapPin size={28} />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">Alamat Kantor</h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      {settings.footer_address || 'Jl. Raya Perjuangan No. 8, Kebon Jeruk, Jakarta Barat 11530, Indonesia'}
-                    </p>
+                  <div className="flex-grow">
+                    <h4 className="font-bold text-gray-900 mb-1">Kantor Pusat</h4>
+                    {settings.footer_address || 'Grand Harvest Cluster Belvoir BC 19, Kel. Balas Klumprik Kec.Wiyung Kota Surabaya, Jawa Timur 60222'}
                   </div>
                 </div>
 
-                <div className="flex items-start gap-5">
-                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shrink-0 mt-1">
-                    <Phone size={28} />
+                <div className="flex items-start">
+                  <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mr-4">
+                    <Phone className="text-primary w-5 h-5" />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">Telepon / WhatsApp</h4>
-                    <p className="text-gray-600 leading-relaxed mb-1">{settings.footer_phone || '+62 21 5555 1234'}</p>
+                  <div className="flex-grow">
+                    <h4 className="font-bold text-gray-900 mb-1">Telepon / WhatsApp</h4>
+                    <p className="text-gray-600 leading-relaxed mb-1">{settings.footer_phone || '+6285284222200'}</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-5">
-                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shrink-0 mt-1">
-                    <Mail size={28} />
+                <div className="flex items-start">
+                  <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mr-4">
+                    <Mail className="text-primary w-5 h-5" />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">Email</h4>
-                    <p className="text-gray-600 leading-relaxed">{settings.footer_email || 'info@harvestselaras.com'}</p>
+                  <div className="flex-grow">
+                    <h4 className="font-bold text-gray-900 mb-1">Email</h4>
+                    <p className="text-gray-600 leading-relaxed">{settings.footer_email || 'info@harvestselarasnusantara.com'}</p>
                   </div>
                 </div>
 

@@ -14,7 +14,7 @@ export default async function Page() {
   
   // @ts-ignore - Bypass VSCode TS Server cache issue
   // @ts-ignore
-  const dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting" WHERE category = $1', 'profil') as any[];
+  const dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
   const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
     acc[curr.key] = curr.value;
     return acc;

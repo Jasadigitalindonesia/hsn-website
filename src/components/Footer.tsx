@@ -46,22 +46,26 @@ export default function Footer({ dict, lang, settings = {} }: { dict: any, lang:
           <div>
             <h3 className="text-white font-bold text-lg mb-6 relative pb-3 before:absolute before:bottom-0 before:left-0 before:w-12 before:h-0.5 before:bg-primary">{dict.contact_title}</h3>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-primary mr-3 shrink-0 mt-0.5" />
-                <span>{settings.footer_address || "Grand Harvest Cluster Belvoir BC 19, Kel. Balas Klumprik Kec.Wiyung Kota Surabaya, Jawa Timur 60222"}</span>
-              </li>
-              <li className="flex items-center">
+              <div className="flex items-start">
+                <MapPin className="w-5 h-5 text-primary mr-3 mt-1 shrink-0" />
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {settings.footer_address || "Grand Harvest Cluster Belvoir BC 19, Kel. Balas Klumprik Kec.Wiyung Kota Surabaya, Jawa Timur 60222"}
+                </p>
+              </div>
+              <div className="flex items-center">
                 <Phone className="w-5 h-5 text-primary mr-3 shrink-0" />
-                <a href={settings.footer_phone ? `https://wa.me/${settings.footer_phone.replace(/\D/g, '')}` : "https://wa.me/6285284222200"} className="hover:text-primary transition-colors">
+                <p className="text-gray-400 text-sm">
                   {settings.footer_phone || "+6285284222200"}
-                </a>
-              </li>
-              <li className="flex items-center">
+                </p>
+              </div>
+              <div className="flex items-center">
                 <Mail className="w-5 h-5 text-primary mr-3 shrink-0" />
+                <p className="text-gray-400 text-sm">
                 <a href={settings.footer_email ? `mailto:${settings.footer_email}` : "mailto:info@harvestselarasnusantara.com"} className="hover:text-primary transition-colors">
                   {settings.footer_email || "info@harvestselarasnusantara.com"}
                 </a>
-              </li>
+                </p>
+              </div>
             </ul>
           </div>
 
