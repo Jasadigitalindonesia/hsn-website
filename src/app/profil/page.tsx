@@ -3,22 +3,25 @@ import Footer from '@/components/Footer';
 import { Target, Eye, ShieldCheck, Award, HeartHandshake, Zap, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedSection from '@/components/AnimatedSection';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 export const revalidate = 0; // Force real-time updates
 
 export default async function Page() {
   const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
   
-  // @ts-ignore - Bypass VSCode TS Server cache issue
-  // @ts-ignore
-  const dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
-  const settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
-    acc[curr.key] = curr.value;
-    return acc;
-  }, {});
+  let settings: Record<string, string> = {};
+  try {
+    const res = await fetch('https://www.harvestselarasnusantara.com/api/settings', { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.data) {
+        settings = data.data;
+      }
+    }
+  } catch (error) {
+    console.error("Fetch Settings Error:", error);
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-white">

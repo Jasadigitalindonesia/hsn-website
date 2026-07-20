@@ -24,7 +24,10 @@ export const metadata: Metadata = {
     title: "PT Harvest Selaras Nusantara | Premium Medical & Aesthetic Equipments",
     description: "Trusted official distributor of medical, aesthetic, surgical, dental, laboratory equipments, and hospital furniture in Indonesia.",
     type: "website",
-  }
+  },
+  verification: {
+    google: "pwFcXxGM2Dk-gxFB5CRXBW1hwUaugpLM-jhRdgCYx30",
+  },
 };
 
 export default async function RootLayout({

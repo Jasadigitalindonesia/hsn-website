@@ -18,13 +18,15 @@ export default async function Home() {
   let featuredProducts: any[] = [];
 
   try {
-    dbSettings = await prisma.$queryRawUnsafe('SELECT * FROM "SiteSetting"') as any[];
-    settings = dbSettings.reduce((acc: Record<string, string>, curr: { key: string; value: string }) => {
-      acc[curr.key] = curr.value;
-      return acc;
-    }, {});
+    const res = await fetch('https://www.harvestselarasnusantara.com/api/settings', { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.data) {
+        settings = data.data;
+      }
+    }
   } catch (error) {
-    console.error("DB Settings Error:", error);
+    console.error("Fetch Settings Error:", error);
   }
 
   const categories = [
