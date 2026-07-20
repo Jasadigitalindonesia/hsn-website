@@ -3,7 +3,12 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Hubungi Kami | PT Harvest Selaras Nusantara",
+  description: "Hubungi PT Harvest Selaras Nusantara untuk konsultasi, penawaran harga, dan dukungan teknis alat kesehatan & estetika.",
+};
 export const revalidate = 0; // Force real-time updates
 
 export default async function Page() {

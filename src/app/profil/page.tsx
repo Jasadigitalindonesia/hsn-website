@@ -4,7 +4,12 @@ import { Target, Eye, ShieldCheck, Award, HeartHandshake, Zap, CheckCircle2 } fr
 import Link from 'next/link';
 import AnimatedSection from '@/components/AnimatedSection';
 import { prisma } from '@/lib/prisma';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Tentang Kami | PT Harvest Selaras Nusantara",
+  description: "Pelajari lebih lanjut tentang PT Harvest Selaras Nusantara, distributor B2B terkemuka alat medis dan estetika berstandar internasional di Indonesia.",
+};
 export const revalidate = 0; // Force real-time updates
 
 export default async function Page() {

@@ -3,7 +3,12 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { Search, ChevronRight, Calendar, User, ArrowRight } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Artikel & Berita Medis Terbaru | PT Harvest Selaras Nusantara",
+  description: "Dapatkan informasi terbaru, tips, dan wawasan seputar teknologi medis, alat kesehatan, dan estetika dari ahli kami.",
+};
 export default async function Page() {
     const dict = require("@/i18n/dictionaries/id.json"); const lang: string = "";
   const pageDict = (dict as any)['news']; // we map "news" to Artikel

@@ -3,7 +3,12 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { Download, FileText, Search } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Katalog Produk | PT Harvest Selaras Nusantara",
+  description: "Unduh katalog produk terbaru kami, mulai dari Hospital Furniture, Ultrasound Systems, hingga Aesthetic Equipment.",
+};
 export const revalidate = 0; // Force real-time updates
 
 export default async function Page() {
