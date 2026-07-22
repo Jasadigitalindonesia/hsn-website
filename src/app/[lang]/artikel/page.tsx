@@ -15,15 +15,10 @@ export default async function Page({ params }: { params: any }) {
   const dict = await (require("@/i18n/getDictionary").getDictionary(lang as any));
   const pageDict = (dict as any)['news'];
 
-  // Fetch dynamic articles safely
-  let dbArticles: any[] = [];
-  try {
-    dbArticles = await prisma.newsArticle.findMany({
-      orderBy: { createdAt: 'desc' }
-    });
-  } catch (error) {
-    console.error("Fetch Articles Error:", error);
-  }
+  // Fetch dynamic articles
+  const dbArticles = await prisma.newsArticle.findMany({
+    orderBy: { createdAt: 'desc' }
+  });
 
   const t = lang === 'en' ? {
     journal: "HSN Journal",

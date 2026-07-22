@@ -17,15 +17,10 @@ export default async function Page({ params, searchParams }: { params: any, sear
     "Medical Equipment", "Aesthetic Equipment", "Diagnostic Devices", "Laboratory Equipment"
   ];
 
-  // Fetch dynamic products safely
-  let dbProducts: any[] = [];
-  try {
-    dbProducts = await prisma.product.findMany({
-      orderBy: { createdAt: 'desc' }
-    });
-  } catch (error) {
-    console.error("Fetch Products Error:", error);
-  }
+  // Fetch dynamic products
+  const dbProducts = await prisma.product.findMany({
+    orderBy: { createdAt: 'desc' }
+  });
 
   const allProducts = dbProducts.map((p: any) => ({
     id: p.id,

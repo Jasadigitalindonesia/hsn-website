@@ -131,7 +131,7 @@ export default function Navbar({ lang, dict }: { lang: string, dict: any }) {
             href={`/${lang || 'id'}/kontak`}
             className="hidden md:flex bg-primary hover:bg-[#b0924b] text-white px-5 py-2 rounded-full text-sm font-bold items-center gap-2 shadow-lg shadow-primary/30 transition-all hover:scale-105"
           >
-            <MessageCircle className="w-4 h-4" /> {dict?.contact || dict?.navigation?.contact || (lang === 'en' ? 'Contact Us' : 'Kontak')}
+            <MessageCircle className="w-4 h-4" /> {dict.contact || "Hubungi Kami"}
           </Link>
           
           {/* Mobile Menu Toggle */}

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function HeroSlider({ settings, lang }: { settings?: any, lang?: string }) {
   const slide = {
-    image: (settings?.hero_image && !settings.hero_image.includes('photo-1620288627223-53302f4e8c74')) ? settings.hero_image : "https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+    image: settings?.hero_image || "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
     title: settings?.hero_title || "Distributor of Medical & Aesthetic Equipments",
   };
 
