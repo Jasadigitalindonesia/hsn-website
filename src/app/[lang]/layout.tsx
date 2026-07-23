@@ -16,12 +16,12 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "PT Harvest Selaras Nusantara | Premium Medical & Aesthetic Equipments",
+  title: "PT Harvest Selaras Nusantara Medica | Premium Medical & Aesthetic Equipments",
   description: "Trusted official distributor of medical, aesthetic, surgical, dental, laboratory equipments, and hospital furniture in Indonesia. Certified, reliable, and premium technical support.",
-  keywords: "PT Harvest Selaras Nusantara, HSN, Medical Equipment, Aesthetic Devices, Dental Equipment, Laboratory Equipment, Hospital Furniture, Indonesia",
-  authors: [{ name: "PT Harvest Selaras Nusantara" }],
+  keywords: "PT Harvest Selaras Nusantara Medica, HSN, Medical Equipment, Aesthetic Devices, Dental Equipment, Laboratory Equipment, Hospital Furniture, Indonesia",
+  authors: [{ name: "PT Harvest Selaras Nusantara Medica" }],
   openGraph: {
-    title: "PT Harvest Selaras Nusantara | Premium Medical & Aesthetic Equipments",
+    title: "PT Harvest Selaras Nusantara Medica | Premium Medical & Aesthetic Equipments",
     description: "Trusted official distributor of medical, aesthetic, surgical, dental, laboratory equipments, and hospital furniture in Indonesia.",
     type: "website",
   },

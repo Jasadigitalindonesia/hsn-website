@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import AnimatedSection from '@/components/AnimatedSection';
 
 export const metadata: Metadata = {
-  title: "Artikel & Berita Medis Terbaru | PT Harvest Selaras Nusantara",
+  title: "Artikel & Berita Medis Terbaru | PT Harvest Selaras Nusantara Medica",
   description: "Dapatkan informasi terbaru, tips, dan wawasan seputar teknologi medis, alat kesehatan, dan estetika dari ahli kami.",
 };
 export default async function Page({ params }: { params: any }) {

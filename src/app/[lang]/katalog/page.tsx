@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import AnimatedSection from '@/components/AnimatedSection';
 
 export const metadata: Metadata = {
-  title: "Katalog Produk | PT Harvest Selaras Nusantara",
+  title: "Katalog Produk | PT Harvest Selaras Nusantara Medica",
   description: "Unduh katalog produk terbaru kami, mulai dari Hospital Furniture, Ultrasound Systems, hingga Aesthetic Equipment.",
 };
 export const revalidate = 0; // Force real-time updates

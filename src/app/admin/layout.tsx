@@ -10,7 +10,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "HSN Admin Panel",
-  description: "CMS for PT Harvest Selaras Nusantara",
+  description: "CMS for PT Harvest Selaras Nusantara Medica",
 };
 
 export default function AdminLayout({

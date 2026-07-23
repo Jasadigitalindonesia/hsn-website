@@ -4,11 +4,11 @@ const prisma = new PrismaClient();
 async function main() {
   const newSettings = [
     // Profil Page
-    { key: 'profil_hero_title', value: 'Tentang PT Harvest Selaras Nusantara', category: 'profil' },
+    { key: 'profil_hero_title', value: 'Tentang PT Harvest Selaras Nusantara Medica', category: 'profil' },
     { key: 'profil_hero_bg', value: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', category: 'profil' },
     { key: 'profil_about_subtitle', value: 'Tentang Kami', category: 'profil' },
-    { key: 'profil_about_title', value: 'Tentang PT Harvest Selaras Nusantara', category: 'profil' },
-    { key: 'profil_about_desc1', value: 'PT Harvest Selaras Nusantara merupakan distributor B2B alat medis dan estetika yang berkomitmen menghadirkan produk berkualitas internasional untuk mendukung perkembangan industri kesehatan dan estetika di Indonesia.', category: 'profil' },
+    { key: 'profil_about_title', value: 'Tentang PT Harvest Selaras Nusantara Medica', category: 'profil' },
+    { key: 'profil_about_desc1', value: 'PT Harvest Selaras Nusantara Medica merupakan distributor B2B alat medis dan estetika yang berkomitmen menghadirkan produk berkualitas internasional untuk mendukung perkembangan industri kesehatan dan estetika di Indonesia.', category: 'profil' },
     { key: 'profil_about_desc2', value: 'Kami percaya bahwa teknologi yang tepat mampu meningkatkan kualitas pelayanan, memperkuat kepercayaan pasien, dan mendukung pertumbuhan bisnis setiap mitra kami. Oleh karena itu, kami tidak hanya menyediakan produk, tetapi juga menghadirkan layanan konsultasi, instalasi, pelatihan, serta dukungan purna jual yang profesional.', category: 'profil' },
     { key: 'profil_about_desc3', value: 'Dengan dukungan tim teknisi yang andal dan jaringan distribusi yang luas di berbagai wilayah, HSN siap menjadi partner strategis yang dapat diandalkan oleh rumah sakit, klinik, maupun dokter spesialis dalam memberikan layanan medis yang unggul.', category: 'profil' },
     { key: 'profil_vision_title', value: 'Visi Kami', category: 'profil' },
@@ -20,7 +20,7 @@ async function main() {
     { key: 'katalog_hero_title', value: 'Katalog Produk', category: 'katalog' },
     { key: 'katalog_hero_bg', value: 'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', category: 'katalog' },
     { key: 'katalog_content_title', value: 'Katalog Produk', category: 'katalog' },
-    { key: 'katalog_content_desc', value: 'Temukan informasi lengkap mengenai seluruh produk yang kami distribusikan melalui katalog digital resmi PT Harvest Selaras Nusantara.', category: 'katalog' },
+    { key: 'katalog_content_desc', value: 'Temukan informasi lengkap mengenai seluruh produk yang kami distribusikan melalui katalog digital resmi PT Harvest Selaras Nusantara Medica.', category: 'katalog' },
     
     // Kontak Page
     { key: 'kontak_hero_title', value: 'Hubungi Kami', category: 'kontak' },

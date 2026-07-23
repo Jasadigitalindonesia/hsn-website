@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: any }) {
   if (lang === 'en') {
     settings.about_subtitle = "Brief About";
     settings.about_title = "Building the Future of Indonesia's Medical Industry";
-    settings.about_description = "PT Harvest Selaras Nusantara is a trusted distributor of medical and aesthetic technology. With a commitment to quality and innovation, we are here as the best partner for healthcare facilities throughout Indonesia.";
+    settings.about_description = "PT Harvest Selaras Nusantara Medica is a trusted distributor of medical and aesthetic technology. With a commitment to quality and innovation, we are here as the best partner for healthcare facilities throughout Indonesia.";
     settings.cta_title = "Improve Your Healthcare Service Quality Now";
     settings.cta_description = "Consult your clinic or hospital needs with our expert team to get the best solution.";
     settings.hero_title = "Distributor of Medical & Aesthetic Equipments";
@@ -182,7 +182,7 @@ export default async function Page({ params }: { params: any }) {
                 {settings.about_title || "Membangun Masa Depan Industri Medis Indonesia"}
               </h2>
               <p className="text-gray-500 mb-8 text-lg leading-relaxed whitespace-pre-line font-light">
-                {settings.about_description || "PT Harvest Selaras Nusantara adalah distributor alat medis dan teknologi estetika terpercaya. Dengan komitmen terhadap kualitas dan inovasi, kami hadir sebagai mitra terbaik fasilitas kesehatan di seluruh Indonesia."}
+                {settings.about_description || "PT Harvest Selaras Nusantara Medica adalah distributor alat medis dan teknologi estetika terpercaya. Dengan komitmen terhadap kualitas dan inovasi, kami hadir sebagai mitra terbaik fasilitas kesehatan di seluruh Indonesia."}
               </p>
               
               <div className="grid grid-cols-2 gap-6 mb-10">

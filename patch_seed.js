@@ -6,12 +6,12 @@ async function main() {
     // About Us
     { key: 'about_subtitle', value: 'Tentang Singkat', category: 'about' },
     { key: 'about_title', value: 'Membangun Masa Depan Industri Medis & Estetika Indonesia', category: 'about' },
-    { key: 'about_description', value: 'PT Harvest Selaras Nusantara adalah perusahaan yang bergerak di bidang distribusi alat medis dan teknologi estetika untuk memenuhi kebutuhan rumah sakit, klinik kecantikan, dokter spesialis, hingga fasilitas kesehatan di seluruh Indonesia. Dengan komitmen terhadap kualitas, inovasi, dan pelayanan, kami hadir sebagai mitra terpercaya dalam menghadirkan solusi terbaik bagi industri kesehatan dan estetika.', category: 'about' },
+    { key: 'about_description', value: 'PT Harvest Selaras Nusantara Medica adalah perusahaan yang bergerak di bidang distribusi alat medis dan teknologi estetika untuk memenuhi kebutuhan rumah sakit, klinik kecantikan, dokter spesialis, hingga fasilitas kesehatan di seluruh Indonesia. Dengan komitmen terhadap kualitas, inovasi, dan pelayanan, kami hadir sebagai mitra terpercaya dalam menghadirkan solusi terbaik bagi industri kesehatan dan estetika.', category: 'about' },
     { key: 'about_image', value: 'https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80', category: 'about' },
     
     // CTA
     { key: 'cta_title', value: 'Siap Mengembangkan Klinik atau Fasilitas Kesehatan Anda?', category: 'cta' },
-    { key: 'cta_description', value: 'Temukan solusi Medical & Aesthetic Equipment terbaik bersama PT Harvest Selaras Nusantara.', category: 'cta' },
+    { key: 'cta_description', value: 'Temukan solusi Medical & Aesthetic Equipment terbaik bersama PT Harvest Selaras Nusantara Medica.', category: 'cta' },
     { key: 'cta_whatsapp_url', value: 'https://wa.me/6281234567890', category: 'cta' },
     { key: 'cta_bg_image', value: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=2000&q=80', category: 'cta' },
     

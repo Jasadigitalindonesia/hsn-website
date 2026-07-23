@@ -73,7 +73,7 @@ export default function ContactForm({ t, settings }: ContactFormProps) {
 
   const handleWhatsApp = () => {
     const waText = encodeURIComponent(
-      `Halo PT Harvest Selaras Nusantara,\nSaya ${formData.fullName || 'Pengunjung'}${formData.institution ? ` dari ${formData.institution}` : ''}.\n\n` +
+      `Halo PT Harvest Selaras Nusantara Medica,\nSaya ${formData.fullName || 'Pengunjung'}${formData.institution ? ` dari ${formData.institution}` : ''}.\n\n` +
       (formData.message ? `Pesan: ${formData.message}` : 'Saya ingin berkonsultasi mengenai produk medis & estetika HSN.')
     );
     const waUrl = settings.cta_whatsapp_url || `https://wa.me/${phoneNo}?text=${waText}`;

@@ -143,7 +143,7 @@ export default function Footer({ dict, lang, settings = {} }: { dict: any, lang:
           transition={{ delay: 0.5 }}
           className="border-t border-[#222222] pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500"
         >
-          <p>&copy; {new Date().getFullYear()} PT Harvest Selaras Nusantara. {dict.rights}</p>
+          <p>&copy; {new Date().getFullYear()} PT Harvest Selaras Nusantara Medica. {dict.rights}</p>
           <div className="flex space-x-6 mt-4 md:mt-0 font-medium">
             <Link href={`/privacy-policy`} className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link href={`/terms`} className="hover:text-primary transition-colors">Terms of Service</Link>

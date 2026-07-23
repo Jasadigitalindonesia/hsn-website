@@ -8,8 +8,8 @@ import ContactForm from '@/components/ContactForm';
 import AnimatedSection from '@/components/AnimatedSection';
 
 export const metadata: Metadata = {
-  title: "Hubungi Kami | PT Harvest Selaras Nusantara",
-  description: "Hubungi PT Harvest Selaras Nusantara untuk konsultasi, penawaran harga, dan dukungan teknis alat kesehatan & estetika.",
+  title: "Hubungi Kami | PT Harvest Selaras Nusantara Medica",
+  description: "Hubungi PT Harvest Selaras Nusantara Medica untuk konsultasi, penawaran harga, dan dukungan teknis alat kesehatan & estetika.",
 };
 export const revalidate = 0;
 

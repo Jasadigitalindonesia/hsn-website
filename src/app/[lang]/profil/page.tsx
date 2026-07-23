@@ -7,8 +7,8 @@ import { prisma } from '@/lib/prisma';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Tentang Kami | PT Harvest Selaras Nusantara",
-  description: "Pelajari lebih lanjut tentang PT Harvest Selaras Nusantara, distributor B2B terkemuka alat medis dan estetika berstandar internasional di Indonesia.",
+  title: "Tentang Kami | PT Harvest Selaras Nusantara Medica",
+  description: "Pelajari lebih lanjut tentang PT Harvest Selaras Nusantara Medica, distributor B2B terkemuka alat medis dan estetika berstandar internasional di Indonesia.",
 };
 export const revalidate = 0;
 
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: any }) {
     settings.profil_hero_title = "Get to Know HSN Closer";
     settings.profil_about_subtitle = "Our History";
     settings.profil_about_title = "Dedication to Indonesian Healthcare";
-    settings.profil_about_desc1 = "PT Harvest Selaras Nusantara is a trusted B2B distributor presenting world-class medical and aesthetic device innovations.";
+    settings.profil_about_desc1 = "PT Harvest Selaras Nusantara Medica is a trusted B2B distributor presenting world-class medical and aesthetic device innovations.";
     settings.profil_about_desc2 = "We believe that the right technology can improve service quality, strengthen patient trust, and support the business growth of our partners. Therefore, we not only provide products but also offer professional consultation, installation, training, and after-sales support.";
     settings.profil_about_desc3 = "With a team of reliable technicians and a wide distribution network, HSN is ready to be your strategic partner.";
     settings.profil_vision_title = "Our Vision";
@@ -92,7 +92,7 @@ export default async function Page({ params }: { params: any }) {
                 
                 <div className="prose prose-lg text-gray-500 max-w-none relative z-10 space-y-6">
                   <p className="font-medium text-gray-800 text-2xl leading-relaxed">
-                    {settings.profil_about_desc1 || 'PT Harvest Selaras Nusantara merupakan distributor B2B terpercaya yang menghadirkan inovasi alat medis dan estetika kelas dunia.'}
+                    {settings.profil_about_desc1 || 'PT Harvest Selaras Nusantara Medica merupakan distributor B2B terpercaya yang menghadirkan inovasi alat medis dan estetika kelas dunia.'}
                   </p>
                   <p className="leading-relaxed font-light">
                     {settings.profil_about_desc2 || 'Kami percaya bahwa teknologi yang tepat mampu meningkatkan kualitas pelayanan, memperkuat kepercayaan pasien, dan mendukung pertumbuhan bisnis setiap mitra kami. Oleh karena itu, kami tidak hanya menyediakan produk, tetapi juga menghadirkan layanan konsultasi, instalasi, pelatihan, serta dukungan purna jual yang profesional.'}

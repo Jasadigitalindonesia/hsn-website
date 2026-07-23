@@ -501,7 +501,7 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
           </Link>
           <div>
             <h1 className="font-display font-black text-lg tracking-wider">HSN CMS Admin</h1>
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">PT. HARVEST SELARAS NUSANTARA</span>
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">PT. HARVEST SELARAS NUSANTARA Medica</span>
           </div>
         </div>
         
