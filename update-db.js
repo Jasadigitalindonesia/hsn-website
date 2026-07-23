@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 async function updateDB() {
   const address = 'Grand Harvest Cluster Belvoir BC 39, Kel. Balas Klumprik Kec.Wiyung Kota Surabaya, Jawa Timur Kode pos 60222';
   const phone = '+6285284222200';
-  const email = 'info@harvestselarasnusantara.com';
+  const email = 'magdalena@hsnmedica.com';
 
   const settingsToUpdate = [
     { key: 'footer_address', value: address, category: 'kontak' },

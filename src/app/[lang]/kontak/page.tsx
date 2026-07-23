@@ -135,12 +135,12 @@ export default async function Page({ params }: { params: any }) {
                         </div>
                       </a>
                       
-                      <a href={`mailto:${settings.footer_email || 'info@harvestselarasnusantara.com'}`} className="flex items-center gap-6 group/item">
+                      <a href={`mailto:${settings.footer_email || 'magdalena@hsnmedica.com'}`} className="flex items-center gap-6 group/item">
                         <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 group-hover/item:bg-primary group-hover/item:text-white transition-colors duration-300">
                           <Mail className="w-6 h-6 text-gray-900 group-hover/item:text-white transition-colors" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900 group-hover/item:text-primary transition-colors">{settings.footer_email || 'info@harvestselarasnusantara.com'}</h3>
+                          <h3 className="text-xl font-bold text-gray-900 group-hover/item:text-primary transition-colors">{settings.footer_email || 'magdalena@hsnmedica.com'}</h3>
                           <p className="text-gray-500 text-sm">{t.helpEmail}</p>
                         </div>
                       </a>

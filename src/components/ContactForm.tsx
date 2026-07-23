@@ -31,7 +31,7 @@ export default function ContactForm({ t, settings }: ContactFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const phoneNo = (settings.footer_phone || "+6285284222200").replace(/\D/g, '');
-  const recipientEmail = settings.footer_email || "info@harvestselarasnusantara.com";
+  const recipientEmail = settings.footer_email || "magdalena@hsnmedica.com";
 
   const handleSendEmail = (e: React.FormEvent) => {
     e.preventDefault();

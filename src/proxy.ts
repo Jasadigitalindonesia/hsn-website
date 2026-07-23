@@ -22,8 +22,9 @@ export function proxy(request: NextRequest) {
  
   if (pathnameHasLocale) return NextResponse.next()
  
+  // Use rewrite so URL stays clean (e.g. hsnmedica.com) without redirecting to /id in URL bar
   request.nextUrl.pathname = `/${defaultLocale}${pathname}`
-  return NextResponse.redirect(request.nextUrl)
+  return NextResponse.rewrite(request.nextUrl)
 }
  
 export const config = {

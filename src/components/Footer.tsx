@@ -100,8 +100,8 @@ export default function Footer({ dict, lang, settings = {} }: { dict: any, lang:
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <p className="text-gray-400 text-sm font-medium">
-                  <a href={settings.footer_email ? `mailto:${settings.footer_email}` : "mailto:info@harvestselarasnusantara.com"} className="hover:text-primary transition-colors">
-                    {settings.footer_email || "info@harvestselarasnusantara.com"}
+                  <a href={settings.footer_email ? `mailto:${settings.footer_email}` : "mailto:magdalena@hsnmedica.com"} className="hover:text-primary transition-colors">
+                    {settings.footer_email || "magdalena@hsnmedica.com"}
                   </a>
                 </p>
               </div>

@@ -56,8 +56,8 @@ export default function Navbar({ lang, dict }: { lang: string, dict: any }) {
           >
             <div className="container mx-auto px-4 py-2 flex justify-between items-center text-xs text-gray-500 font-medium">
               <div className="flex space-x-6">
-                <a href="mailto:info@harvestselarasnusantara.com" className="flex items-center hover:text-primary transition-colors group">
-                  <Mail className="w-3.5 h-3.5 mr-2 group-hover:scale-110 transition-transform" /> info@harvestselarasnusantara.com
+                <a href="mailto:magdalena@hsnmedica.com" className="flex items-center hover:text-primary transition-colors group">
+                  <Mail className="w-3.5 h-3.5 mr-2 group-hover:scale-110 transition-transform" /> magdalena@hsnmedica.com
                 </a>
                 <a href="https://wa.me/6285284222200" className="flex items-center hover:text-primary transition-colors group">
                   <Phone className="w-3.5 h-3.5 mr-2 group-hover:scale-110 transition-transform" /> +62 852 8422 2200
