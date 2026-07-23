@@ -93,7 +93,7 @@ export default function Navbar({ lang, dict }: { lang: string, dict: any }) {
             transition={{ duration: 0.5 }}
             src="/logo.png" 
             alt="HSN Logo" 
-            className="h-14 md:h-16 w-auto object-contain origin-left ml-2" 
+            className="h-16 md:h-20 w-auto object-contain origin-left my-1" 
           />
         </Link>
 
