@@ -19,7 +19,7 @@ async function main() {
     { key: 'footer_description', value: 'Distributor alat kesehatan dan estetika terpercaya untuk solusi fasilitas medis masa depan.', category: 'footer' },
     { key: 'footer_address', value: 'Graha Cibinong Blok E1 No 11', category: 'footer' },
     { key: 'footer_phone', value: '0812-3456-7890', category: 'footer' },
-    { key: 'footer_email', value: 'info@jasadigitalindonesia.com', category: 'footer' },
+    { key: 'footer_email', value: 'magdalena@hsnmedica.com', category: 'footer' },
     { key: 'footer_map_url', value: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126915.22238466601!2d106.74533081054688!3d-6.249767222396165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1692881234567!5m2!1sid!2sid', category: 'footer' }
   ];
 
